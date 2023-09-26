@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataTransformationsUserConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Configurations>
+    <Configuration>
+      <Name>Development</Name>
+      <Options>
+        <CreateDeploymentUtility>true</CreateDeploymentUtility>
+        <UserIDs>
+          <ConfigurationSetting>
+            <Id>GIS</Id>
+            <Name>GIS</Name>
+            <Value xsi:type="xsd:string">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAANeXur1ctAEu64OqEbBLDFgAAAAAIAAAARwBJAFMAAAADZgAAwAAAABAAAAAYtujVqC5PLWWGsqyIA8HGAAAAAASAAACgAAAAEAAAAJrfuZNToNo6gJGVvEYw7/0IAAAAcImEGdNfVR8UAAAADtrdvup7za/enhChE5c6K9PbKHY=</Value>
+          </ConfigurationSetting>
+          <ConfigurationSetting>
+            <Id>Amanda</Id>
+            <Name>Amanda</Name>
+            <Value xsi:type="xsd:string">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAANeXur1ctAEu64OqEbBLDFgAAAAAOAAAAQQBtAGEAbgBkAGEAAAADZgAAwAAAABAAAAAvDETvB2EvzRuDKril770NAAAAAASAAACgAAAAEAAAAHUpdnzr38J+9Lcs6rAg+u0IAAAAOsU0EdXDhaYUAAAAvurBWIDYdd1+gJ8rHUahuiK4zlI=</Value>
+          </ConfigurationSetting>
+        </UserIDs>
+        <UserPasswords>
+          <ConfigurationSetting>
+            <Id>GIS</Id>
+            <Name>GIS</Name>
+          </ConfigurationSetting>
+        </UserPasswords>
+        <OfflineMode>false</OfflineMode>
+        <ProgressReporting>true</ProgressReporting>
+      </Options>
+    </Configuration>
+  </Configurations>
+</DataTransformationsUserConfiguration>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataTransformationsUserConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Configurations>
+    <Configuration>
+      <Name>Development</Name>
+      <Options>
+        <AssessmentRuleSuppressionSetting />
+        <UseWinAuth>false</UseWinAuth>
+        <WinAuthUserName />
+        <WinAuthDomain />
+        <CreateDeploymentUtility>true</CreateDeploymentUtility>
+        <UserIDs>
+          <ConfigurationSetting>
+            <Id>GIS</Id>
+            <Name>GIS</Name>
+          </ConfigurationSetting>
+          <ConfigurationSetting>
+            <Id>Amanda</Id>
+            <Name>Amanda</Name>
+            <Value xsi:type="xsd:string">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAA3/pYXJZmUa+5AyVu68sowAAAAAOAAAAQQBtAGEAbgBkAGEAAAADZgAAwAAAABAAAAB06B6yyWptDVzXXIYZmJDYAAAAAASAAACgAAAAEAAAAOTyiuGjh78Embw2rMsQLxMwAAAARjATm6HLxMzU5NAocT2MeE6TLIG2bbaOT5JZVra5gNoZH4xoH4QhDTc4uN/8USGUFAAAANDkR5JoclWbQTVvbG28kOVZMubW</Value>
+          </ConfigurationSetting>
+          <ConfigurationSetting>
+            <Id>A7DEV</Id>
+            <Name>A7DEV</Name>
+            <Value xsi:type="xsd:string">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAA3/pYXJZmUa+5AyVu68sowAAAAAMAAAAQQA3AEQARQBWAAAAA2YAAMAAAAAQAAAAthlX1tnX/Wi/7c3GMEgKCQAAAAAEgAAAoAAAABAAAADHVK7Yg8deQJ/5LgF+AkooCAAAANJN/kqzTCr2FAAAANHqPZausE4YzlKE8VkgngJ4naN2</Value>
+          </ConfigurationSetting>
+        </UserIDs>
+        <UserPasswords>
+          <ConfigurationSetting>
+            <Id>Amanda</Id>
+            <Name>Amanda</Name>
+            <Value xsi:type="xsd:string">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAA3/pYXJZmUa+5AyVu68sowAAAAAOAAAAQQBtAGEAbgBkAGEAAAADZgAAwAAAABAAAADy4zYjbV3d7FUknHxrDLgJAAAAAASAAACgAAAAEAAAALtOvY8o9OGZJNtabwCYVbwoAAAAC0aCULHgkTTtLw4qv6XcFnDrQlwk4FnNTBZCp8xSCm+mduBnYDqbexQAAAA7v20b44pNdaHLiTecG45HXez4Fw==</Value>
+          </ConfigurationSetting>
+          <ConfigurationSetting>
+            <Id>GIS</Id>
+            <Name>GIS</Name>
+          </ConfigurationSetting>
+        </UserPasswords>
+        <OfflineMode>false</OfflineMode>
+        <ProgressReporting>true</ProgressReporting>
+        <ParameterConfigurationSensitiveValues />
+      </Options>
+    </Configuration>
+  </Configurations>
+</DataTransformationsUserConfiguration>

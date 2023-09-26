@@ -1,0 +1,1923 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="1/30/2014 11:27:30 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="PC-CTH-DBTOOLS"
+  DTS:CreatorName="ABBOTSFORD\dbadmin"
+  DTS:DTSID="{19BEAC82-43D9-4EFF-8A44-7AF23695BD01}"
+  DTS:EnableConfig="True"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.948.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Business_Address"
+  DTS:PackageType="5"
+  DTS:VersionBuild="52"
+  DTS:VersionGUID="{1E32A204-1B96-4D44-B2F4-E511C516EED5}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Amanda]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{64E6E478-A2BE-48BF-BE3C-20A82FFE5406}"
+      DTS:ObjectName="Amanda">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=ATST;User ID=/;Provider=OraOLEDB.Oracle.1;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[GIS]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{DA4A6FE0-10CD-4B5E-BC6C-54BDCEA81E5B}"
+      DTS:ObjectName="GIS">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=gdev;User ID=/;Provider=OraOLEDB.Oracle.1;Persist Security Info=True;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SSIS Config]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{8F466C5B-E43B-44F9-B483-91A33A06C4DA}"
+      DTS:ObjectName="SSIS Config">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=SRV-CTH-SQL03;Initial Catalog=SSIS_ConfigTest;Provider=SQLNCLI10.1;Integrated Security=SSPI;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SSIS Logging]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{E7180C86-CC42-4EEC-A2EB-79D5904DF29C}"
+      DTS:ObjectName="SSIS Logging">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=SRV-CTH-SQL03;Initial Catalog=SSIS_LoggingTest;Provider=SQLNCLI10.1;Integrated Security=SSPI;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Configurations>
+    <DTS:Configuration
+      DTS:ConfigurationString="SSIS_Config_Location"
+      DTS:ConfigurationType="2"
+      DTS:ConfigurationVariable="\Package.Connections[SSIS Config].Properties[ConnectionString]"
+      DTS:CreationName=""
+      DTS:DTSID="{D865DA1C-4962-486B-8812-DC9FF40999AC}"
+      DTS:ObjectName="SSIS_Config" />
+    <DTS:Configuration
+      DTS:ConfigurationString="&quot;SSIS Config&quot;;&quot;[dbo].[SSISConfigurations]&quot;;&quot;Amanda_OLEDB&quot;;"
+      DTS:ConfigurationType="7"
+      DTS:CreationName=""
+      DTS:DTSID="{3D5BE036-5AB4-4826-8C7B-AA57040AF7DA}"
+      DTS:ObjectName="AMANDA" />
+    <DTS:Configuration
+      DTS:ConfigurationString="&quot;SSIS Config&quot;;&quot;[dbo].[SSISConfigurations]&quot;;&quot;SSIS_Logging&quot;;"
+      DTS:ConfigurationType="7"
+      DTS:CreationName=""
+      DTS:DTSID="{95E37F8B-FE34-490B-BC58-F2D1EBBE51BD}"
+      DTS:ObjectName="SSIS_Logging" />
+    <DTS:Configuration
+      DTS:ConfigurationString="&quot;SSIS Config&quot;;&quot;[dbo].[SSISConfigurations]&quot;;&quot;GIS&quot;;"
+      DTS:ConfigurationType="7"
+      DTS:CreationName=""
+      DTS:DTSID="{EB7FDE2C-9592-40BF-88D5-41AFFAB65E33}"
+      DTS:ObjectName="GIS" />
+  </DTS:Configurations>
+  <DTS:LogProviders>
+    <DTS:LogProvider
+      DTS:ConfigString="SSIS Logging"
+      DTS:CreationName="Microsoft.LogProviderSQLServer"
+      DTS:Description="Writes log entries for events to a SQL Server database"
+      DTS:DTSID="{060CB9D8-FBF4-4BEA-B7D6-19B99BD554BE}"
+      DTS:ObjectName="SSIS log provider for SQL Server">
+      <DTS:ObjectData>
+        <InnerObject />
+      </DTS:ObjectData>
+    </DTS:LogProvider>
+  </DTS:LogProviders>
+  <DTS:Variables />
+  <DTS:LoggingOptions
+    DTS:FilterKind="0"
+    DTS:LoggingMode="1">
+    <DTS:Property
+      DTS:DataType="8"
+      DTS:Name="EventFilter">13,7,OnError,19,OnExecStatusChanged,13,OnInformation,13,OnPostExecute,14,OnPostValidate,12,OnPreExecute,13,OnPreValidate,10,OnProgress,13,OnQueryCancel,12,OnTaskFailed,22,OnVariableValueChanged,9,OnWarning,10,Diagnostic</DTS:Property>
+    <DTS:Property
+      DTS:EventName="Diagnostic"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnError"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnExecStatusChanged"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnInformation"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPostExecute"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPostValidate"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPreExecute"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPreValidate"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnProgress"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnQueryCancel"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnTaskFailed"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnVariableValueChanged"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnWarning"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:SelectedLogProviders>
+      <DTS:SelectedLogProvider
+        DTS:InstanceID="{060CB9D8-FBF4-4BEA-B7D6-19B99BD554BE}" />
+    </DTS:SelectedLogProviders>
+  </DTS:LoggingOptions>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Data Flow Task"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:DelayValidation="True"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{2a764c91-a35c-44d9-806c-30e5c4b4f649}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Data Flow Task"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server v10; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          BLOBTempStoragePath=""
+          bufferTempStoragePath=""
+          version="1">
+          <components>
+            <component
+              refId="Package\Data Flow Task\AMANDA"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="AMANDA"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT 
+  TO_NUMBER(PROPGISID1) RSN, 
+  TO_NUMBER(PROPERTYRSN) PROPERTYRSN, 
+  NVL(BL_TYPE, '') || ' - ' || NVL(BL_SUB_TYPE, '') BL_CATEGORY, 
+  BL_TYPE, 
+  BL_SUB_TYPE, 
+  FOLDERTYPE, 
+  FOLDERRSN, 
+  ISSUEDATE, 
+  EXPIRYDATE, 
+  LICENCE_NUMBER, 
+  BUSINESS_NAME, 
+  BUSINESS_DESCRIPTION, 
+  PEOPLERSN, 
+  CORP_NAME, 
+  MAILING_ADDRESS CORP_ADDRESS, /* MAILING_ADDRESS is not censored */
+  CENSOR_ADDRESS, 
+  LICENCE_STATUSCODE, 
+  LICENCE_STATUS, 
+  MBL_FEEPAID MBL_LICENCE 
+FROM 
+  AMANDA.C_VW_ISSUED_BUSINESSLICENCE
+WHERE 
+  PROPGISID1 IS NOT NULL</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">true</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task\AMANDA.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Amanda]"
+                  connectionManagerRefId="Package.ConnectionManagers[Amanda]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\AMANDA.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\AMANDA.Outputs[OLE DB Source Output].Columns[RSN]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\AMANDA.Outputs[OLE DB Source Output].ExternalColumns[RSN]"
+                      length="38"
+                      lineageId="Package\Data Flow Task\AMANDA.Outputs[OLE DB Source Output].Columns[RSN]"
+                      name="RSN"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\AMANDA.Outputs[OLE DB Source Output].Columns[PROPERTYRSN]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\AMANDA.Outputs[OLE DB Source Output].ExternalColumns[PROPERTYRSN]"
+                      length="38"
+                      lineageId="Package\Data Flow Task\AMANDA.Outputs[OLE DB Source Output].Columns[PROPERTYRSN]"
+                      name="PROPERTYRSN"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\AMANDA.Outputs[OLE DB Source Output].Columns[BL_CATEGORY]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\AMANDA.Outputs[OLE DB Source Output].ExternalColumns[BL_CATEGORY]"
+                      length="83"
+                      lineageId="Package\Data Flow Task\AMANDA.Outputs[OLE DB Source Output].Columns[BL_CATEGORY]"
+                      name="BL_CATEGORY"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\AMANDA.Outputs[OLE DB Source Output].Columns[BL_TYPE]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\AMANDA.Outputs[OLE DB Source Output].ExternalColumns[BL_TYPE]"
+                      length="40"
+                      lineageId="Package\Data Flow Task\AMANDA.Outputs[OLE DB Source Output].Columns[BL_TYPE]"
+                      name="BL_TYPE"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\AMANDA.Outputs[OLE DB Source Output].Columns[BL_SUB_TYPE]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\AMANDA.Outputs[OLE DB Source Output].ExternalColumns[BL_SUB_TYPE]"
+                      length="40"
+                      lineageId="Package\Data Flow Task\AMANDA.Outputs[OLE DB Source Output].Columns[BL_SUB_TYPE]"
+                      name="BL_SUB_TYPE"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\AMANDA.Outputs[OLE DB Source Output].Columns[FOLDERTYPE]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\AMANDA.Outputs[OLE DB Source Output].ExternalColumns[FOLDERTYPE]"
+                      length="2"
+                      lineageId="Package\Data Flow Task\AMANDA.Outputs[OLE DB Source Output].Columns[FOLDERTYPE]"
+                      name="FOLDERTYPE"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\AMANDA.Outputs[OLE DB Source Output].Columns[FOLDERRSN]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\AMANDA.Outputs[OLE DB Source Output].ExternalColumns[FOLDERRSN]"
+                      lineageId="Package\Data Flow Task\AMANDA.Outputs[OLE DB Source Output].Columns[FOLDERRSN]"
+                      name="FOLDERRSN"
+                      precision="10"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\AMANDA.Outputs[OLE DB Source Output].Columns[ISSUEDATE]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\AMANDA.Outputs[OLE DB Source Output].ExternalColumns[ISSUEDATE]"
+                      lineageId="Package\Data Flow Task\AMANDA.Outputs[OLE DB Source Output].Columns[ISSUEDATE]"
+                      name="ISSUEDATE"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\AMANDA.Outputs[OLE DB Source Output].Columns[EXPIRYDATE]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\AMANDA.Outputs[OLE DB Source Output].ExternalColumns[EXPIRYDATE]"
+                      lineageId="Package\Data Flow Task\AMANDA.Outputs[OLE DB Source Output].Columns[EXPIRYDATE]"
+                      name="EXPIRYDATE"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\AMANDA.Outputs[OLE DB Source Output].Columns[LICENCE_NUMBER]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\AMANDA.Outputs[OLE DB Source Output].ExternalColumns[LICENCE_NUMBER]"
+                      length="14"
+                      lineageId="Package\Data Flow Task\AMANDA.Outputs[OLE DB Source Output].Columns[LICENCE_NUMBER]"
+                      name="LICENCE_NUMBER"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\AMANDA.Outputs[OLE DB Source Output].Columns[BUSINESS_NAME]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\AMANDA.Outputs[OLE DB Source Output].ExternalColumns[BUSINESS_NAME]"
+                      length="80"
+                      lineageId="Package\Data Flow Task\AMANDA.Outputs[OLE DB Source Output].Columns[BUSINESS_NAME]"
+                      name="BUSINESS_NAME"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\AMANDA.Outputs[OLE DB Source Output].Columns[BUSINESS_DESCRIPTION]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\AMANDA.Outputs[OLE DB Source Output].ExternalColumns[BUSINESS_DESCRIPTION]"
+                      length="2000"
+                      lineageId="Package\Data Flow Task\AMANDA.Outputs[OLE DB Source Output].Columns[BUSINESS_DESCRIPTION]"
+                      name="BUSINESS_DESCRIPTION"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\AMANDA.Outputs[OLE DB Source Output].Columns[PEOPLERSN]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\AMANDA.Outputs[OLE DB Source Output].ExternalColumns[PEOPLERSN]"
+                      lineageId="Package\Data Flow Task\AMANDA.Outputs[OLE DB Source Output].Columns[PEOPLERSN]"
+                      name="PEOPLERSN"
+                      precision="10"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\AMANDA.Outputs[OLE DB Source Output].Columns[CORP_NAME]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\AMANDA.Outputs[OLE DB Source Output].ExternalColumns[CORP_NAME]"
+                      length="75"
+                      lineageId="Package\Data Flow Task\AMANDA.Outputs[OLE DB Source Output].Columns[CORP_NAME]"
+                      name="CORP_NAME"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\AMANDA.Outputs[OLE DB Source Output].Columns[CORP_ADDRESS]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\AMANDA.Outputs[OLE DB Source Output].ExternalColumns[CORP_ADDRESS]"
+                      length="150"
+                      lineageId="Package\Data Flow Task\AMANDA.Outputs[OLE DB Source Output].Columns[CORP_ADDRESS]"
+                      name="CORP_ADDRESS"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\AMANDA.Outputs[OLE DB Source Output].Columns[CENSOR_ADDRESS]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\AMANDA.Outputs[OLE DB Source Output].ExternalColumns[CENSOR_ADDRESS]"
+                      length="1"
+                      lineageId="Package\Data Flow Task\AMANDA.Outputs[OLE DB Source Output].Columns[CENSOR_ADDRESS]"
+                      name="CENSOR_ADDRESS"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\AMANDA.Outputs[OLE DB Source Output].Columns[LICENCE_STATUSCODE]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\AMANDA.Outputs[OLE DB Source Output].ExternalColumns[LICENCE_STATUSCODE]"
+                      lineageId="Package\Data Flow Task\AMANDA.Outputs[OLE DB Source Output].Columns[LICENCE_STATUSCODE]"
+                      name="LICENCE_STATUSCODE"
+                      precision="5"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\AMANDA.Outputs[OLE DB Source Output].Columns[LICENCE_STATUS]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\AMANDA.Outputs[OLE DB Source Output].ExternalColumns[LICENCE_STATUS]"
+                      length="40"
+                      lineageId="Package\Data Flow Task\AMANDA.Outputs[OLE DB Source Output].Columns[LICENCE_STATUS]"
+                      name="LICENCE_STATUS"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\AMANDA.Outputs[OLE DB Source Output].Columns[MBL_LICENCE]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\AMANDA.Outputs[OLE DB Source Output].ExternalColumns[MBL_LICENCE]"
+                      length="1"
+                      lineageId="Package\Data Flow Task\AMANDA.Outputs[OLE DB Source Output].Columns[MBL_LICENCE]"
+                      name="MBL_LICENCE"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\AMANDA.Outputs[OLE DB Source Output].ExternalColumns[RSN]"
+                      dataType="wstr"
+                      length="38"
+                      name="RSN" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\AMANDA.Outputs[OLE DB Source Output].ExternalColumns[PROPERTYRSN]"
+                      dataType="wstr"
+                      length="38"
+                      name="PROPERTYRSN" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\AMANDA.Outputs[OLE DB Source Output].ExternalColumns[BL_CATEGORY]"
+                      codePage="1252"
+                      dataType="str"
+                      length="83"
+                      name="BL_CATEGORY" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\AMANDA.Outputs[OLE DB Source Output].ExternalColumns[BL_TYPE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="40"
+                      name="BL_TYPE" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\AMANDA.Outputs[OLE DB Source Output].ExternalColumns[BL_SUB_TYPE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="40"
+                      name="BL_SUB_TYPE" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\AMANDA.Outputs[OLE DB Source Output].ExternalColumns[FOLDERTYPE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="2"
+                      name="FOLDERTYPE" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\AMANDA.Outputs[OLE DB Source Output].ExternalColumns[FOLDERRSN]"
+                      dataType="numeric"
+                      name="FOLDERRSN"
+                      precision="10" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\AMANDA.Outputs[OLE DB Source Output].ExternalColumns[ISSUEDATE]"
+                      dataType="dbTimeStamp"
+                      name="ISSUEDATE" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\AMANDA.Outputs[OLE DB Source Output].ExternalColumns[EXPIRYDATE]"
+                      dataType="dbTimeStamp"
+                      name="EXPIRYDATE" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\AMANDA.Outputs[OLE DB Source Output].ExternalColumns[LICENCE_NUMBER]"
+                      codePage="1252"
+                      dataType="str"
+                      length="14"
+                      name="LICENCE_NUMBER" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\AMANDA.Outputs[OLE DB Source Output].ExternalColumns[BUSINESS_NAME]"
+                      codePage="1252"
+                      dataType="str"
+                      length="80"
+                      name="BUSINESS_NAME" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\AMANDA.Outputs[OLE DB Source Output].ExternalColumns[BUSINESS_DESCRIPTION]"
+                      codePage="1252"
+                      dataType="str"
+                      length="2000"
+                      name="BUSINESS_DESCRIPTION" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\AMANDA.Outputs[OLE DB Source Output].ExternalColumns[PEOPLERSN]"
+                      dataType="numeric"
+                      name="PEOPLERSN"
+                      precision="10" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\AMANDA.Outputs[OLE DB Source Output].ExternalColumns[CORP_NAME]"
+                      codePage="1252"
+                      dataType="str"
+                      length="75"
+                      name="CORP_NAME" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\AMANDA.Outputs[OLE DB Source Output].ExternalColumns[CORP_ADDRESS]"
+                      codePage="1252"
+                      dataType="str"
+                      length="150"
+                      name="CORP_ADDRESS" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\AMANDA.Outputs[OLE DB Source Output].ExternalColumns[CENSOR_ADDRESS]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="CENSOR_ADDRESS" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\AMANDA.Outputs[OLE DB Source Output].ExternalColumns[LICENCE_STATUSCODE]"
+                      dataType="numeric"
+                      name="LICENCE_STATUSCODE"
+                      precision="5" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\AMANDA.Outputs[OLE DB Source Output].ExternalColumns[LICENCE_STATUS]"
+                      codePage="1252"
+                      dataType="str"
+                      length="40"
+                      name="LICENCE_STATUS" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\AMANDA.Outputs[OLE DB Source Output].ExternalColumns[MBL_LICENCE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="MBL_LICENCE" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Data Flow Task\AMANDA.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\AMANDA.Outputs[OLE DB Source Error Output].Columns[RSN]"
+                      dataType="wstr"
+                      length="38"
+                      lineageId="Package\Data Flow Task\AMANDA.Outputs[OLE DB Source Error Output].Columns[RSN]"
+                      name="RSN" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\AMANDA.Outputs[OLE DB Source Error Output].Columns[PROPERTYRSN]"
+                      dataType="wstr"
+                      length="38"
+                      lineageId="Package\Data Flow Task\AMANDA.Outputs[OLE DB Source Error Output].Columns[PROPERTYRSN]"
+                      name="PROPERTYRSN" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\AMANDA.Outputs[OLE DB Source Error Output].Columns[BL_CATEGORY]"
+                      codePage="1252"
+                      dataType="str"
+                      length="83"
+                      lineageId="Package\Data Flow Task\AMANDA.Outputs[OLE DB Source Error Output].Columns[BL_CATEGORY]"
+                      name="BL_CATEGORY" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\AMANDA.Outputs[OLE DB Source Error Output].Columns[BL_TYPE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="40"
+                      lineageId="Package\Data Flow Task\AMANDA.Outputs[OLE DB Source Error Output].Columns[BL_TYPE]"
+                      name="BL_TYPE" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\AMANDA.Outputs[OLE DB Source Error Output].Columns[BL_SUB_TYPE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="40"
+                      lineageId="Package\Data Flow Task\AMANDA.Outputs[OLE DB Source Error Output].Columns[BL_SUB_TYPE]"
+                      name="BL_SUB_TYPE" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\AMANDA.Outputs[OLE DB Source Error Output].Columns[FOLDERTYPE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="2"
+                      lineageId="Package\Data Flow Task\AMANDA.Outputs[OLE DB Source Error Output].Columns[FOLDERTYPE]"
+                      name="FOLDERTYPE" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\AMANDA.Outputs[OLE DB Source Error Output].Columns[FOLDERRSN]"
+                      dataType="numeric"
+                      lineageId="Package\Data Flow Task\AMANDA.Outputs[OLE DB Source Error Output].Columns[FOLDERRSN]"
+                      name="FOLDERRSN"
+                      precision="10" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\AMANDA.Outputs[OLE DB Source Error Output].Columns[ISSUEDATE]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Data Flow Task\AMANDA.Outputs[OLE DB Source Error Output].Columns[ISSUEDATE]"
+                      name="ISSUEDATE" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\AMANDA.Outputs[OLE DB Source Error Output].Columns[EXPIRYDATE]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Data Flow Task\AMANDA.Outputs[OLE DB Source Error Output].Columns[EXPIRYDATE]"
+                      name="EXPIRYDATE" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\AMANDA.Outputs[OLE DB Source Error Output].Columns[LICENCE_NUMBER]"
+                      codePage="1252"
+                      dataType="str"
+                      length="14"
+                      lineageId="Package\Data Flow Task\AMANDA.Outputs[OLE DB Source Error Output].Columns[LICENCE_NUMBER]"
+                      name="LICENCE_NUMBER" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\AMANDA.Outputs[OLE DB Source Error Output].Columns[BUSINESS_NAME]"
+                      codePage="1252"
+                      dataType="str"
+                      length="80"
+                      lineageId="Package\Data Flow Task\AMANDA.Outputs[OLE DB Source Error Output].Columns[BUSINESS_NAME]"
+                      name="BUSINESS_NAME" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\AMANDA.Outputs[OLE DB Source Error Output].Columns[BUSINESS_DESCRIPTION]"
+                      codePage="1252"
+                      dataType="str"
+                      length="2000"
+                      lineageId="Package\Data Flow Task\AMANDA.Outputs[OLE DB Source Error Output].Columns[BUSINESS_DESCRIPTION]"
+                      name="BUSINESS_DESCRIPTION" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\AMANDA.Outputs[OLE DB Source Error Output].Columns[PEOPLERSN]"
+                      dataType="numeric"
+                      lineageId="Package\Data Flow Task\AMANDA.Outputs[OLE DB Source Error Output].Columns[PEOPLERSN]"
+                      name="PEOPLERSN"
+                      precision="10" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\AMANDA.Outputs[OLE DB Source Error Output].Columns[CORP_NAME]"
+                      codePage="1252"
+                      dataType="str"
+                      length="75"
+                      lineageId="Package\Data Flow Task\AMANDA.Outputs[OLE DB Source Error Output].Columns[CORP_NAME]"
+                      name="CORP_NAME" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\AMANDA.Outputs[OLE DB Source Error Output].Columns[CORP_ADDRESS]"
+                      codePage="1252"
+                      dataType="str"
+                      length="150"
+                      lineageId="Package\Data Flow Task\AMANDA.Outputs[OLE DB Source Error Output].Columns[CORP_ADDRESS]"
+                      name="CORP_ADDRESS" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\AMANDA.Outputs[OLE DB Source Error Output].Columns[CENSOR_ADDRESS]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      lineageId="Package\Data Flow Task\AMANDA.Outputs[OLE DB Source Error Output].Columns[CENSOR_ADDRESS]"
+                      name="CENSOR_ADDRESS" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\AMANDA.Outputs[OLE DB Source Error Output].Columns[LICENCE_STATUSCODE]"
+                      dataType="numeric"
+                      lineageId="Package\Data Flow Task\AMANDA.Outputs[OLE DB Source Error Output].Columns[LICENCE_STATUSCODE]"
+                      name="LICENCE_STATUSCODE"
+                      precision="5" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\AMANDA.Outputs[OLE DB Source Error Output].Columns[LICENCE_STATUS]"
+                      codePage="1252"
+                      dataType="str"
+                      length="40"
+                      lineageId="Package\Data Flow Task\AMANDA.Outputs[OLE DB Source Error Output].Columns[LICENCE_STATUS]"
+                      name="LICENCE_STATUS" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\AMANDA.Outputs[OLE DB Source Error Output].Columns[MBL_LICENCE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      lineageId="Package\Data Flow Task\AMANDA.Outputs[OLE DB Source Error Output].Columns[MBL_LICENCE]"
+                      name="MBL_LICENCE" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\AMANDA.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\AMANDA.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\AMANDA.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\AMANDA.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task\GIS"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="GIS"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">"GIS"."BUSINESS_ADDRESS"</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">true</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task\GIS.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[GIS]"
+                  connectionManagerRefId="Package.ConnectionManagers[GIS]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task\GIS.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task\GIS.Inputs[OLE DB Destination Input].Columns[RSN]"
+                      cachedDataType="wstr"
+                      cachedLength="38"
+                      cachedName="RSN"
+                      externalMetadataColumnId="Package\Data Flow Task\GIS.Inputs[OLE DB Destination Input].ExternalColumns[RSN]"
+                      lineageId="Package\Data Flow Task\AMANDA.Outputs[OLE DB Source Output].Columns[RSN]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\GIS.Inputs[OLE DB Destination Input].Columns[PROPERTYRSN]"
+                      cachedDataType="wstr"
+                      cachedLength="38"
+                      cachedName="PROPERTYRSN"
+                      externalMetadataColumnId="Package\Data Flow Task\GIS.Inputs[OLE DB Destination Input].ExternalColumns[PROPERTYRSN]"
+                      lineageId="Package\Data Flow Task\AMANDA.Outputs[OLE DB Source Output].Columns[PROPERTYRSN]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\GIS.Inputs[OLE DB Destination Input].Columns[BL_CATEGORY]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="83"
+                      cachedName="BL_CATEGORY"
+                      externalMetadataColumnId="Package\Data Flow Task\GIS.Inputs[OLE DB Destination Input].ExternalColumns[BL_CATEGORY]"
+                      lineageId="Package\Data Flow Task\AMANDA.Outputs[OLE DB Source Output].Columns[BL_CATEGORY]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\GIS.Inputs[OLE DB Destination Input].Columns[BL_TYPE]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="40"
+                      cachedName="BL_TYPE"
+                      externalMetadataColumnId="Package\Data Flow Task\GIS.Inputs[OLE DB Destination Input].ExternalColumns[BL_TYPE]"
+                      lineageId="Package\Data Flow Task\AMANDA.Outputs[OLE DB Source Output].Columns[BL_TYPE]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\GIS.Inputs[OLE DB Destination Input].Columns[BL_SUB_TYPE]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="40"
+                      cachedName="BL_SUB_TYPE"
+                      externalMetadataColumnId="Package\Data Flow Task\GIS.Inputs[OLE DB Destination Input].ExternalColumns[BL_SUB_TYPE]"
+                      lineageId="Package\Data Flow Task\AMANDA.Outputs[OLE DB Source Output].Columns[BL_SUB_TYPE]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\GIS.Inputs[OLE DB Destination Input].Columns[FOLDERTYPE]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="2"
+                      cachedName="FOLDERTYPE"
+                      externalMetadataColumnId="Package\Data Flow Task\GIS.Inputs[OLE DB Destination Input].ExternalColumns[FOLDERTYPE]"
+                      lineageId="Package\Data Flow Task\AMANDA.Outputs[OLE DB Source Output].Columns[FOLDERTYPE]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\GIS.Inputs[OLE DB Destination Input].Columns[FOLDERRSN]"
+                      cachedDataType="numeric"
+                      cachedName="FOLDERRSN"
+                      cachedPrecision="10"
+                      externalMetadataColumnId="Package\Data Flow Task\GIS.Inputs[OLE DB Destination Input].ExternalColumns[FOLDERRSN]"
+                      lineageId="Package\Data Flow Task\AMANDA.Outputs[OLE DB Source Output].Columns[FOLDERRSN]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\GIS.Inputs[OLE DB Destination Input].Columns[ISSUEDATE]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="ISSUEDATE"
+                      externalMetadataColumnId="Package\Data Flow Task\GIS.Inputs[OLE DB Destination Input].ExternalColumns[ISSUEDATE]"
+                      lineageId="Package\Data Flow Task\AMANDA.Outputs[OLE DB Source Output].Columns[ISSUEDATE]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\GIS.Inputs[OLE DB Destination Input].Columns[EXPIRYDATE]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="EXPIRYDATE"
+                      externalMetadataColumnId="Package\Data Flow Task\GIS.Inputs[OLE DB Destination Input].ExternalColumns[EXPIRYDATE]"
+                      lineageId="Package\Data Flow Task\AMANDA.Outputs[OLE DB Source Output].Columns[EXPIRYDATE]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\GIS.Inputs[OLE DB Destination Input].Columns[LICENCE_NUMBER]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="14"
+                      cachedName="LICENCE_NUMBER"
+                      externalMetadataColumnId="Package\Data Flow Task\GIS.Inputs[OLE DB Destination Input].ExternalColumns[LICENCE_NUMBER]"
+                      lineageId="Package\Data Flow Task\AMANDA.Outputs[OLE DB Source Output].Columns[LICENCE_NUMBER]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\GIS.Inputs[OLE DB Destination Input].Columns[BUSINESS_NAME]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="80"
+                      cachedName="BUSINESS_NAME"
+                      externalMetadataColumnId="Package\Data Flow Task\GIS.Inputs[OLE DB Destination Input].ExternalColumns[BUSINESS_NAME]"
+                      lineageId="Package\Data Flow Task\AMANDA.Outputs[OLE DB Source Output].Columns[BUSINESS_NAME]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\GIS.Inputs[OLE DB Destination Input].Columns[BUSINESS_DESCRIPTION]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="2000"
+                      cachedName="BUSINESS_DESCRIPTION"
+                      externalMetadataColumnId="Package\Data Flow Task\GIS.Inputs[OLE DB Destination Input].ExternalColumns[BUSINESS_DESCRIPTION]"
+                      lineageId="Package\Data Flow Task\AMANDA.Outputs[OLE DB Source Output].Columns[BUSINESS_DESCRIPTION]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\GIS.Inputs[OLE DB Destination Input].Columns[PEOPLERSN]"
+                      cachedDataType="numeric"
+                      cachedName="PEOPLERSN"
+                      cachedPrecision="10"
+                      externalMetadataColumnId="Package\Data Flow Task\GIS.Inputs[OLE DB Destination Input].ExternalColumns[PEOPLERSN]"
+                      lineageId="Package\Data Flow Task\AMANDA.Outputs[OLE DB Source Output].Columns[PEOPLERSN]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\GIS.Inputs[OLE DB Destination Input].Columns[CORP_NAME]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="75"
+                      cachedName="CORP_NAME"
+                      externalMetadataColumnId="Package\Data Flow Task\GIS.Inputs[OLE DB Destination Input].ExternalColumns[CORP_NAME]"
+                      lineageId="Package\Data Flow Task\AMANDA.Outputs[OLE DB Source Output].Columns[CORP_NAME]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\GIS.Inputs[OLE DB Destination Input].Columns[CORP_ADDRESS]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="150"
+                      cachedName="CORP_ADDRESS"
+                      externalMetadataColumnId="Package\Data Flow Task\GIS.Inputs[OLE DB Destination Input].ExternalColumns[CORP_ADDRESS]"
+                      lineageId="Package\Data Flow Task\AMANDA.Outputs[OLE DB Source Output].Columns[CORP_ADDRESS]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\GIS.Inputs[OLE DB Destination Input].Columns[CENSOR_ADDRESS]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="1"
+                      cachedName="CENSOR_ADDRESS"
+                      externalMetadataColumnId="Package\Data Flow Task\GIS.Inputs[OLE DB Destination Input].ExternalColumns[CENSOR_ADDRESS]"
+                      lineageId="Package\Data Flow Task\AMANDA.Outputs[OLE DB Source Output].Columns[CENSOR_ADDRESS]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\GIS.Inputs[OLE DB Destination Input].Columns[LICENCE_STATUSCODE]"
+                      cachedDataType="numeric"
+                      cachedName="LICENCE_STATUSCODE"
+                      cachedPrecision="5"
+                      externalMetadataColumnId="Package\Data Flow Task\GIS.Inputs[OLE DB Destination Input].ExternalColumns[LICENCE_STATUSCODE]"
+                      lineageId="Package\Data Flow Task\AMANDA.Outputs[OLE DB Source Output].Columns[LICENCE_STATUSCODE]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\GIS.Inputs[OLE DB Destination Input].Columns[LICENCE_STATUS]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="40"
+                      cachedName="LICENCE_STATUS"
+                      externalMetadataColumnId="Package\Data Flow Task\GIS.Inputs[OLE DB Destination Input].ExternalColumns[LICENCE_STATUS]"
+                      lineageId="Package\Data Flow Task\AMANDA.Outputs[OLE DB Source Output].Columns[LICENCE_STATUS]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\GIS.Inputs[OLE DB Destination Input].Columns[MBL_LICENCE]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="1"
+                      cachedName="MBL_LICENCE"
+                      externalMetadataColumnId="Package\Data Flow Task\GIS.Inputs[OLE DB Destination Input].ExternalColumns[MBL_LICENCE]"
+                      lineageId="Package\Data Flow Task\AMANDA.Outputs[OLE DB Source Output].Columns[MBL_LICENCE]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\GIS.Inputs[OLE DB Destination Input].ExternalColumns[RSN]"
+                      dataType="numeric"
+                      name="RSN"
+                      precision="10" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\GIS.Inputs[OLE DB Destination Input].ExternalColumns[PROPERTYRSN]"
+                      dataType="numeric"
+                      name="PROPERTYRSN"
+                      precision="10" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\GIS.Inputs[OLE DB Destination Input].ExternalColumns[BL_CATEGORY]"
+                      codePage="1252"
+                      dataType="str"
+                      length="90"
+                      name="BL_CATEGORY" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\GIS.Inputs[OLE DB Destination Input].ExternalColumns[BL_TYPE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="40"
+                      name="BL_TYPE" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\GIS.Inputs[OLE DB Destination Input].ExternalColumns[BL_SUB_TYPE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="40"
+                      name="BL_SUB_TYPE" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\GIS.Inputs[OLE DB Destination Input].ExternalColumns[FOLDERTYPE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="2"
+                      name="FOLDERTYPE" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\GIS.Inputs[OLE DB Destination Input].ExternalColumns[FOLDERRSN]"
+                      dataType="numeric"
+                      name="FOLDERRSN"
+                      precision="10" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\GIS.Inputs[OLE DB Destination Input].ExternalColumns[ISSUEDATE]"
+                      dataType="dbTimeStamp"
+                      name="ISSUEDATE" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\GIS.Inputs[OLE DB Destination Input].ExternalColumns[EXPIRYDATE]"
+                      dataType="dbTimeStamp"
+                      name="EXPIRYDATE" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\GIS.Inputs[OLE DB Destination Input].ExternalColumns[LICENCE_NUMBER]"
+                      codePage="1252"
+                      dataType="str"
+                      length="14"
+                      name="LICENCE_NUMBER" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\GIS.Inputs[OLE DB Destination Input].ExternalColumns[BUSINESS_NAME]"
+                      codePage="1252"
+                      dataType="str"
+                      length="80"
+                      name="BUSINESS_NAME" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\GIS.Inputs[OLE DB Destination Input].ExternalColumns[BUSINESS_DESCRIPTION]"
+                      codePage="1252"
+                      dataType="str"
+                      length="2000"
+                      name="BUSINESS_DESCRIPTION" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\GIS.Inputs[OLE DB Destination Input].ExternalColumns[PEOPLERSN]"
+                      dataType="numeric"
+                      name="PEOPLERSN"
+                      precision="10" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\GIS.Inputs[OLE DB Destination Input].ExternalColumns[CORP_NAME]"
+                      codePage="1252"
+                      dataType="str"
+                      length="75"
+                      name="CORP_NAME" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\GIS.Inputs[OLE DB Destination Input].ExternalColumns[CORP_ADDRESS]"
+                      codePage="1252"
+                      dataType="str"
+                      length="150"
+                      name="CORP_ADDRESS" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\GIS.Inputs[OLE DB Destination Input].ExternalColumns[CENSOR_ADDRESS]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="CENSOR_ADDRESS" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\GIS.Inputs[OLE DB Destination Input].ExternalColumns[LICENCE_STATUSCODE]"
+                      dataType="numeric"
+                      name="LICENCE_STATUSCODE"
+                      precision="5" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\GIS.Inputs[OLE DB Destination Input].ExternalColumns[LICENCE_STATUS]"
+                      codePage="1252"
+                      dataType="str"
+                      length="40"
+                      name="LICENCE_STATUS" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\GIS.Inputs[OLE DB Destination Input].ExternalColumns[MBL_LICENCE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="MBL_LICENCE" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\GIS.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Data Flow Task\GIS.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\GIS.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\GIS.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\GIS.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\GIS.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Data Flow Task.Paths[OLE DB Source Output]"
+              endId="Package\Data Flow Task\GIS.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Data Flow Task\AMANDA.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Drop Indexes"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{b005c34d-6ff0-4289-8d97-cd2c0d302611}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Drop Indexes"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{DA4A6FE0-10CD-4B5E-BC6C-54BDCEA81E5B}"
+          SQLTask:SqlStatementSource="DROP INDEX GIS.BUSINESS_ADDRESS_N01" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Foreach Loop - Truncate or create target tables"
+      DTS:CreationName="STOCK:FOREACHLOOP"
+      DTS:Description="Foreach Loop Container"
+      DTS:DTSID="{0244643d-1cb9-4998-bcc6-d1ded1664346}"
+      DTS:ExecutableType="STOCK:FOREACHLOOP"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Foreach Loop - Truncate or create target tables">
+      <DTS:ForEachEnumerator
+        DTS:CreationName="Microsoft.ForEachItemEnumerator"
+        DTS:DTSID="{ffe2cea7-15a6-4990-84d6-9ce0f6b4dff9}"
+        DTS:ObjectName="{7335593A-CD9B-432C-9741-02823BC82FDD}">
+        <DTS:ObjectData>
+          <FEIEItems>
+            <FEIEItem>
+              <FEIEItemValue
+                Type="8"
+                Value="GIS.BUSINESS_ADDRESS" />
+              <FEIEItemValue
+                Type="8"
+                Value="CREATE TABLE GIS.BUSINESS_ADDRESS ( RSN NUMBER(10), PROPERTYRSN NUMBER(10), BL_CATEGORY VARCHAR2(90 BYTE), BL_TYPE VARCHAR2(40 BYTE), BL_SUB_TYPE VARCHAR2(40 BYTE), FOLDERTYPE VARCHAR2(2 BYTE), FOLDERRSN NUMBER(10), ISSUEDATE DATE, EXPIRYDATE DATE, LICENCE_NUMBER VARCHAR2(14 BYTE), BUSINESS_NAME VARCHAR2(80 BYTE), BUSINESS_DESCRIPTION VARCHAR2(2000 BYTE), PEOPLERSN NUMBER(10), CORP_NAME VARCHAR2(75 BYTE), CORP_ADDRESS VARCHAR2(150 BYTE), CENSOR_ADDRESS VARCHAR2(1 BYTE), LICENCE_STATUSCODE NUMBER(5), LICENCE_STATUS VARCHAR2(40 BYTE), MBL_LICENCE VARCHAR2(1 BYTE) ) TABLESPACE GIS_TBS" />
+              <FEIEItemValue
+                Type="8"
+                Value="CREATE INDEX GIS.BUSINESS_ADDRESS_N01 ON GIS.BUSINESS_ADDRESS (RSN) LOGGING TABLESPACE GIS_TBS COMPUTE STATISTICS" />
+            </FEIEItem>
+          </FEIEItems>
+        </DTS:ObjectData>
+      </DTS:ForEachEnumerator>
+      <DTS:Variables>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:DTSID="{A686EDC6-7097-48D5-8329-99BC1161015E}"
+          DTS:IncludeInDebugDump="2345"
+          DTS:Namespace="User"
+          DTS:ObjectName="v_CreateIndexSQL">
+          <DTS:VariableValue
+            DTS:DataType="8"
+            xml:space="preserve"></DTS:VariableValue>
+        </DTS:Variable>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:DTSID="{f15db55f-9a23-43a9-92cf-d8e13573e48c}"
+          DTS:IncludeInDebugDump="2345"
+          DTS:Namespace="User"
+          DTS:ObjectName="v_CreateTableSQL">
+          <DTS:VariableValue
+            DTS:DataType="8"
+            xml:space="preserve"></DTS:VariableValue>
+        </DTS:Variable>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:DTSID="{da216681-426f-4fa4-a58f-de809f9fc5a5}"
+          DTS:IncludeInDebugDump="2345"
+          DTS:Namespace="User"
+          DTS:ObjectName="v_TableExistResult">
+          <DTS:VariableValue
+            DTS:DataType="8"
+            xml:space="preserve"></DTS:VariableValue>
+        </DTS:Variable>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:DTSID="{f339376f-a60f-43fa-97c6-7a1ffb04864c}"
+          DTS:EvaluateAsExpression="True"
+          DTS:Expression="&quot;SELECT TO_CHAR(COUNT(*)) CountOfTables FROM ALL_TABLES WHERE owner || '.' || table_name = '&quot; +  @[User::v_TableName] + &quot;'&quot;"
+          DTS:IncludeInDebugDump="2345"
+          DTS:Namespace="User"
+          DTS:ObjectName="v_TableExistSQL">
+          <DTS:VariableValue
+            DTS:DataType="8">SELECT TO_CHAR(COUNT(*)) CountOfTables FROM ALL_TABLES WHERE owner || '.' || table_name = ''</DTS:VariableValue>
+        </DTS:Variable>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:DTSID="{b486a418-6002-47e3-a9b9-d6e1fcf8f196}"
+          DTS:IncludeInDebugDump="2345"
+          DTS:Namespace="User"
+          DTS:ObjectName="v_TableName">
+          <DTS:VariableValue
+            DTS:DataType="8"
+            xml:space="preserve"></DTS:VariableValue>
+        </DTS:Variable>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:DTSID="{ad2d2dad-a095-4b36-aaf0-8d4992356715}"
+          DTS:EvaluateAsExpression="True"
+          DTS:Expression="&quot;{CALL &quot; + ( @[User::v_TableName] == &quot;GIS.BUSINESS_ADDRESS&quot; ? &quot;GIS.C_BUSINESS_ADDRESS_TRUNCATE()}&quot; : @[User::v_TableName] + &quot;_TRUNCATE()}&quot; )"
+          DTS:IncludeInDebugDump="2345"
+          DTS:Namespace="User"
+          DTS:ObjectName="v_TruncateTableSQL">
+          <DTS:VariableValue
+            DTS:DataType="8">{CALL _TRUNCATE()}</DTS:VariableValue>
+        </DTS:Variable>
+      </DTS:Variables>
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Foreach Loop - Truncate or create target tables\Create Indexes"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{31e3186c-5f39-4aaf-9d11-de8383fe120d}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Create Indexes"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{DA4A6FE0-10CD-4B5E-BC6C-54BDCEA81E5B}"
+              SQLTask:SqlStmtSourceType="Variable"
+              SQLTask:SqlStatementSource="User::v_CreateIndexSQL" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Foreach Loop - Truncate or create target tables\Create v_TableName"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{a80a4f94-b300-4d88-bc21-05667371a955}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Create v_TableName"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{DA4A6FE0-10CD-4B5E-BC6C-54BDCEA81E5B}"
+              SQLTask:SqlStmtSourceType="Variable"
+              SQLTask:SqlStatementSource="User::v_CreateTableSQL" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Foreach Loop - Truncate or create target tables\Set Variable"
+          DTS:CreationName="STOCK:SEQUENCE"
+          DTS:Description="Sequence Container"
+          DTS:DTSID="{01bf3de3-9d9b-4c5e-af36-36925ea331db}"
+          DTS:ExecutableType="STOCK:SEQUENCE"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Set Variable">
+          <DTS:Variables />
+          <DTS:Executables>
+            <DTS:Executable
+              DTS:refId="Package\Foreach Loop - Truncate or create target tables\Set Variable\Count if table exists"
+              DTS:CreationName="Microsoft.ExecuteSQLTask"
+              DTS:Description="Execute SQL Task"
+              DTS:DTSID="{70ee29d8-560f-4242-a988-648abfd7c246}"
+              DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="Count if table exists"
+              DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+              DTS:ThreadHint="0">
+              <DTS:Variables />
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{DA4A6FE0-10CD-4B5E-BC6C-54BDCEA81E5B}"
+                  SQLTask:SqlStmtSourceType="Variable"
+                  SQLTask:SqlStatementSource="User::v_TableExistSQL"
+                  SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+                  <SQLTask:ResultBinding
+                    SQLTask:ResultName="CountOfTables"
+                    SQLTask:DtsVariableName="User::v_TableExistResult" />
+                </SQLTask:SqlTaskData>
+              </DTS:ObjectData>
+            </DTS:Executable>
+          </DTS:Executables>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Foreach Loop - Truncate or create target tables\Truncate v_TableName"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{02468cc0-13b9-4a94-80e5-239fb72b37d1}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Truncate v_TableName"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{DA4A6FE0-10CD-4B5E-BC6C-54BDCEA81E5B}"
+              SQLTask:SqlStmtSourceType="Variable"
+              SQLTask:SqlStatementSource="User::v_TruncateTableSQL" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Foreach Loop - Truncate or create target tables.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{6944e1f2-7402-40fc-9443-8d807ff16ad1}"
+          DTS:EvalOp="3"
+          DTS:Expression="@[User::v_TableExistResult]==&quot;1&quot;"
+          DTS:From="Package\Foreach Loop - Truncate or create target tables\Set Variable"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Foreach Loop - Truncate or create target tables\Truncate v_TableName" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Foreach Loop - Truncate or create target tables.PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{bf1c0d90-370f-4487-9cc5-d26b2eee5289}"
+          DTS:EvalOp="3"
+          DTS:Expression="@[User::v_TableExistResult]==&quot;0&quot;"
+          DTS:From="Package\Foreach Loop - Truncate or create target tables\Set Variable"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package\Foreach Loop - Truncate or create target tables\Create v_TableName" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Foreach Loop - Truncate or create target tables.PrecedenceConstraints[Constraint 2]"
+          DTS:CreationName=""
+          DTS:DTSID="{6557819e-49e0-4bc3-8789-f842a5d609b4}"
+          DTS:From="Package\Foreach Loop - Truncate or create target tables\Create v_TableName"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 2"
+          DTS:To="Package\Foreach Loop - Truncate or create target tables\Create Indexes" />
+      </DTS:PrecedenceConstraints>
+      <DTS:ForEachVariableMappings>
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{2D955595-C1C0-479A-81DB-C8584D178616}"
+          DTS:ObjectName="{2D955595-C1C0-479A-81DB-C8584D178616}"
+          DTS:ValueIndex="0"
+          DTS:VariableName="User::v_TableName" />
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{F01D2593-57F0-48F2-B882-221CC1792C8D}"
+          DTS:ObjectName="{F01D2593-57F0-48F2-B882-221CC1792C8D}"
+          DTS:ValueIndex="1"
+          DTS:VariableName="User::v_CreateTableSQL" />
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{DC7D177D-33BD-4B89-8155-CCD983279E22}"
+          DTS:ObjectName="{DC7D177D-33BD-4B89-8155-CCD983279E22}"
+          DTS:ValueIndex="2"
+          DTS:VariableName="User::v_CreateIndexSQL" />
+      </DTS:ForEachVariableMappings>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Grant Permissions"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{fc2eefe8-9fdc-499d-a644-eedd334f2e42}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Grant Permissions"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{DA4A6FE0-10CD-4B5E-BC6C-54BDCEA81E5B}"
+          SQLTask:SqlStatementSource="GRANT SELECT ON GIS.BUSINESS_ADDRESS TO GIS_EDIT, GIS_READONLY" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Recreate Indexes"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{06def32b-49b9-4a8e-8b9c-d51d3a4e3cd5}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Recreate Indexes"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{DA4A6FE0-10CD-4B5E-BC6C-54BDCEA81E5B}"
+          SQLTask:SqlStatementSource="CREATE INDEX GIS.BUSINESS_ADDRESS_N01 ON GIS.BUSINESS_ADDRESS (RSN) LOGGING TABLESPACE GIS_TBS COMPUTE STATISTICS" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{A6F72101-977B-4560-8CD4-27D176943AAD}"
+      DTS:From="Package\Foreach Loop - Truncate or create target tables"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Drop Indexes" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{B22C6969-14CB-40B7-A991-001AEE4E7A1B}"
+      DTS:From="Package\Drop Indexes"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Data Flow Task" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{24DF2CDD-E3DF-4CBD-A368-128E2893C54E}"
+      DTS:From="Package\Data Flow Task"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Recreate Indexes" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{1787D25C-EF17-44BA-A46F-5749CEA7E0C6}"
+      DTS:From="Package\Recreate Indexes"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 3"
+      DTS:To="Package\Grant Permissions" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph" xmlns:mssge="clr-namespace:Microsoft.SqlServer.Graph.Extended;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Data Flow Task"
+          TopLeft="197.047169811321,356.481132075472" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Drop Indexes"
+          TopLeft="197.047169811321,276.443396226415" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Foreach Loop - Truncate or create target tables\Create Indexes"
+          TopLeft="375.622641509434,78.7735849056604" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Foreach Loop - Truncate or create target tables\Create v_TableName"
+          TopLeft="205.88679245283,78.7735849056604" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Foreach Loop - Truncate or create target tables\Set Variable\Count if table exists"
+          TopLeft="7.54716981132076,8.47169811320755" />
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="153,67"
+          Size="153,111"
+          Id="Package\Foreach Loop - Truncate or create target tables\Set Variable"
+          TopLeft="7.50943396226415,8.96226415094339" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Foreach Loop - Truncate or create target tables\Truncate v_TableName"
+          TopLeft="205.88679245283,8.47169811320754" />
+        <EdgeLayout
+          Id="Package\Foreach Loop - Truncate or create target tables.PrecedenceConstraints[Constraint]"
+          TopLeft="160.075471698113,43.8301886792453">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="45.811320754717,-13.3962264150943"
+              Start="0,0"
+              End="38.311320754717,-13.3962264150943">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="22.9056603773585,0" />
+                  <mssgle:LineSegment
+                    End="22.9056603773585,-13.3962264150943" />
+                  <mssgle:LineSegment
+                    End="38.311320754717,-13.3962264150943" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="14.9056603773585,5,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Foreach Loop - Truncate or create target tables.PrecedenceConstraints[Constraint 1]"
+          TopLeft="160.075471698113,85.3396226415094">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="45.811320754717,15.3962264150943"
+              Start="0,0"
+              End="38.311320754717,15.3962264150943">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="22.9056603773585,0" />
+                  <mssgle:LineSegment
+                    End="22.9056603773585,15.3962264150943" />
+                  <mssgle:LineSegment
+                    End="38.311320754717,15.3962264150943" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="14.9056603773585,-26,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Foreach Loop - Truncate or create target tables.PrecedenceConstraints[Constraint 2]"
+          TopLeft="341.660377358491,100.735849056604">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="33.9622641509434,0"
+              Start="0,0"
+              End="26.4622641509434,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="26.4622641509434,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="519,137"
+          Size="519,181"
+          Id="Package\Foreach Loop - Truncate or create target tables"
+          TopLeft="5.5,63.3490566037736" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Grant Permissions"
+          TopLeft="197.047169811321,508.707547169811" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Recreate Indexes"
+          TopLeft="197.047169811321,432.594339622641" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="264.933962264151,244.254716981132">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,32.188679245283"
+              Start="0,0"
+              End="0,24.688679245283">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,24.688679245283" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="285.688679245283,320.367924528302">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-20.7547169811321,36.1132075471698"
+              Start="0,0"
+              End="-20.7547169811321,28.6132075471698">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,27.0566037735849" />
+                  <mssgle:LineSegment
+                    End="-20.7547169811321,27.0566037735849" />
+                  <mssgle:LineSegment
+                    End="-20.7547169811321,28.6132075471698" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="264.933962264151,400.405660377358">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,32.188679245283"
+              Start="0,0"
+              End="0,24.688679245283">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,24.688679245283" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="264.933962264151,476.518867924528">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,32.188679245283"
+              Start="0,0"
+              End="0,24.688679245283">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,24.688679245283" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <AnnotationLayout
+          Text="To strip the carriage returns using &quot;vi&quot;:&#xA;$vi temp.txt&#xA;&lt;press i to insert&gt;&#xA;&lt;paste the formatted create statement&gt;&#xA;&lt;press ESC ZZ to save and exit&gt;&#xA;From Windows Explorer, open the text file, copy the contents and &#xA;paste into SSIS.&#xA;Note:  Although not confirmed, I have found references that this may &#xA;no longer be necessary in SQL 2012 and beyond."
+          ParentId="Package"
+          Size="338,173"
+          Id="f66b21c9-6131-4ef1-9fd2-37b5588324e0"
+          TopLeft="344.971698113208,251.27358490566">
+          <AnnotationLayout.FontInfo>
+            <mssge:FontInfo
+              Family="Tahoma"
+              Size="11.25"
+              Color="#FF080000">
+              <mssge:FontInfo.TextDecorations>
+                <av:TextDecorationCollection />
+              </mssge:FontInfo.TextDecorations>
+            </mssge:FontInfo>
+          </AnnotationLayout.FontInfo>
+        </AnnotationLayout>
+        <AnnotationLayout
+          Text="When adding a new extract table, add it to the data flow, but copy the create table statement.  &#xA;Use a tool like &quot;vi&quot; or &quot;Notepad++&quot; to strip carriage returns, then copy and paste it to the &#xA;Foreach Loop &quot;collection&quot; parameter, along with the tablename.  This loop will then either &#xA;truncate the table if it exists, or create the table if it does not exist.  Do the same for indexes."
+          ParentId="Package"
+          Size="469,133"
+          Id="4472b3b4-4946-4e26-a25f-029037623f9f"
+          TopLeft="32.5566037735849,5.5">
+          <AnnotationLayout.FontInfo>
+            <mssge:FontInfo
+              Family="Tahoma"
+              Size="11.25"
+              Color="#FF080000">
+              <mssge:FontInfo.TextDecorations>
+                <av:TextDecorationCollection />
+              </mssge:FontInfo.TextDecorations>
+            </mssge:FontInfo>
+          </AnnotationLayout.FontInfo>
+        </AnnotationLayout>
+        <AnnotationLayout
+          Text="Created Dec. 10, 2013 - Glen Harrison&#xA;This package populates the GIS.BUSINESS_ADDRESS table in the GIS database.  This table &#xA;must exist prior to this package running.  The source of this data is AMANDA.  The original &#xA;purpose of this table is to provide search capabilities to the Geocortex Web Mapping product.&#xA;&#xA;July 28, 2014 - Glen Harrison&#xA;Used Template to flush out package, also archived the PROPERTY_ADDRESS package at &#xA;Hugh's request.  Finally, removed the censoring of home based businesses and added a &#xA;clause to only include records with a GISID1 that is NOT NULL.&#xA;"
+          ParentId="Package"
+          Size="460,228"
+          Id="aad25101-01b8-490f-b2c3-c6a4771132ad"
+          TopLeft="529.650943396226,5.80188679245282">
+          <AnnotationLayout.FontInfo>
+            <mssge:FontInfo
+              Family="Tahoma"
+              Size="11.25"
+              Color="#FF080000">
+              <mssge:FontInfo.TextDecorations>
+                <av:TextDecorationCollection />
+              </mssge:FontInfo.TextDecorations>
+            </mssge:FontInfo>
+          </AnnotationLayout.FontInfo>
+        </AnnotationLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <ConnectionManager
+    design-time-name="Package.ConnectionManagers[SSIS Config]">
+    <DataSourceID>SSIS Config</DataSourceID>
+  </ConnectionManager>
+  <ConnectionManager
+    design-time-name="Package.ConnectionManagers[SSIS Logging]">
+    <DataSourceID>SSIS Logging</DataSourceID>
+  </ConnectionManager>
+  <TaskHost
+    design-time-name="Package\Data Flow Task">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Data Flow Task\GIS"
+          TopLeft="5.5,145.27358490566" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Data Flow Task\AMANDA"
+          TopLeft="5.5,5.5" />
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[OLE DB Source Output]"
+          TopLeft="73.3867924528302,49.4245283018868">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,95.8490566037736"
+              Start="0,0"
+              End="0,88.3490566037736">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,88.3490566037736" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

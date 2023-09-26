@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ProductVersion>10.50.4000.0</ProductVersion>
+  <SchemaVersion>9.0.1.0</SchemaVersion>
+  <State>$base64$PFNvdXJjZUNvbnRyb2xJbmZvIHhtbG5zOnhzZD0iaHR0cDovL3d3dy53My5vcmcvMjAwMS9YTUxTY2hlbWEiIHhtbG5zOnhzaT0iaHR0cDovL3d3dy53My5vcmcvMjAwMS9YTUxTY2hlbWEtaW5zdGFuY2UiIHhtbG5zOmRkbDI9Imh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vYW5hbHlzaXNzZXJ2aWNlcy8yMDAzL2VuZ2luZS8yIiB4bWxuczpkZGwyXzI9Imh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vYW5hbHlzaXNzZXJ2aWNlcy8yMDAzL2VuZ2luZS8yLzIiIHhtbG5zOmRkbDEwMF8xMDA9Imh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vYW5hbHlzaXNzZXJ2aWNlcy8yMDA4L2VuZ2luZS8xMDAvMTAwIiB4bWxuczpkZGwyMDA9Imh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vYW5hbHlzaXNzZXJ2aWNlcy8yMDEwL2VuZ2luZS8yMDAiIHhtbG5zOmRkbDIwMF8yMDA9Imh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vYW5hbHlzaXNzZXJ2aWNlcy8yMDEwL2VuZ2luZS8yMDAvMjAwIiB4bWxuczpkd2Q9Imh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vRGF0YVdhcmVob3VzZS9EZXNpZ25lci8xLjAiPg0KICA8RW5hYmxlZD5mYWxzZTwvRW5hYmxlZD4NCiAgPFByb2plY3ROYW1lPjwvUHJvamVjdE5hbWU+DQogIDxBdXhQYXRoPjwvQXV4UGF0aD4NCiAgPExvY2FsUGF0aD48L0xvY2FsUGF0aD4NCiAgPFByb3ZpZGVyPjwvUHJvdmlkZXI+DQo8L1NvdXJjZUNvbnRyb2xJbmZvPg==</State>
+  <Database>
+    <Name>BuildingPermits.database</Name>
+    <FullPath>BuildingPermits.database</FullPath>
+  </Database>
+  <Cubes />
+  <Dimensions />
+  <DataSources>
+    <ProjectItem>
+      <Name>SSIS Config.ds</Name>
+      <FullPath>SSIS Config.ds</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>SSIS Logging.ds</Name>
+      <FullPath>SSIS Logging.ds</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>Amanda.ds</Name>
+      <FullPath>Amanda.ds</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>GIS.ds</Name>
+      <FullPath>GIS.ds</FullPath>
+    </ProjectItem>
+  </DataSources>
+  <DataSourceViews />
+  <MiningModels />
+  <Roles />
+  <Miscellaneous />
+  <Configurations>
+    <Configuration>
+      <Name>Development</Name>
+      <Options>
+        <OutputPath>bin</OutputPath>
+        <ConnectionMappings>
+          <ConfigurationSetting>
+            <Id>SSIS Config</Id>
+            <Name>SSIS Config</Name>
+            <Value xsi:type="xsd:string">Provider=SQLNCLI11;Data Source=srv-cth-sql03;Integrated Security=SSPI;Initial Catalog=SSIS_ConfigTest</Value>
+          </ConfigurationSetting>
+          <ConfigurationSetting>
+            <Id>SSIS Logging</Id>
+            <Name>SSIS Logging</Name>
+            <Value xsi:type="xsd:string">Provider=SQLNCLI11;Data Source=srv-cth-sql03;Integrated Security=SSPI;Initial Catalog=SSIS_LoggingTest</Value>
+          </ConfigurationSetting>
+          <ConfigurationSetting>
+            <Id>Amanda</Id>
+            <Name>Amanda</Name>
+            <Value xsi:type="xsd:string">Provider=OraOLEDB.Oracle.1;Data Source=test;Persist Security Info=True;User ID=</Value>
+          </ConfigurationSetting>
+          <ConfigurationSetting>
+            <Id>GIS</Id>
+            <Name>GIS</Name>
+            <Value xsi:type="xsd:string">Provider=OraOLEDB.Oracle.1;Data Source=agis;Persist Security Info=True;User ID=</Value>
+          </ConfigurationSetting>
+        </ConnectionMappings>
+        <ConnectionProviderMappings />
+        <ConnectionSecurityMappings>
+          <ConfigurationSetting>
+            <Id>SSIS Config</Id>
+            <Name>SSIS Config</Name>
+            <Value xsi:type="xsd:int">0</Value>
+          </ConfigurationSetting>
+          <ConfigurationSetting>
+            <Id>SSIS Logging</Id>
+            <Name>SSIS Logging</Name>
+            <Value xsi:type="xsd:int">0</Value>
+          </ConfigurationSetting>
+          <ConfigurationSetting>
+            <Id>Amanda</Id>
+            <Name>Amanda</Name>
+            <Value xsi:type="xsd:int">1</Value>
+          </ConfigurationSetting>
+          <ConfigurationSetting>
+            <Id>GIS</Id>
+            <Name>GIS</Name>
+            <Value xsi:type="xsd:int">1</Value>
+          </ConfigurationSetting>
+        </ConnectionSecurityMappings>
+        <DatabaseStorageLocations />
+      </Options>
+    </Configuration>
+  </Configurations>
+  <DTSPackages>
+    <DtsPackage FormatVersion="3">
+      <Name>PropertyInfo_DowntownBusinessArea.dtsx</Name>
+      <FullPath>PropertyInfo_DowntownBusinessArea.dtsx</FullPath>
+      <References />
+    </DtsPackage>
+    <DtsPackage FormatVersion="3">
+      <Name>PropertyInfo_Airport.dtsx</Name>
+      <FullPath>PropertyInfo_Airport.dtsx</FullPath>
+      <References />
+    </DtsPackage>
+    <DtsPackage FormatVersion="3">
+      <Name>PropertyInfo_GarbageZone.dtsx</Name>
+      <FullPath>PropertyInfo_GarbageZone.dtsx</FullPath>
+      <References />
+    </DtsPackage>
+    <DtsPackage FormatVersion="3">
+      <Name>PropertyInfo_ClearbrookWaterDistrict.dtsx</Name>
+      <FullPath>PropertyInfo_ClearbrookWaterDistrict.dtsx</FullPath>
+      <References />
+    </DtsPackage>
+    <DtsPackage FormatVersion="3">
+      <Name>PropertyInfo_DCC.dtsx</Name>
+      <FullPath>PropertyInfo_DCC.dtsx</FullPath>
+      <References />
+    </DtsPackage>
+    <DtsPackage FormatVersion="3">
+      <Name>PropertyInfo_EnableTrigger.dtsx</Name>
+      <FullPath>PropertyInfo_EnableTrigger.dtsx</FullPath>
+      <References />
+    </DtsPackage>
+    <DtsPackage FormatVersion="3">
+      <Name>PropertyInfo_Parcel.dtsx</Name>
+      <FullPath>PropertyInfo_Parcel.dtsx</FullPath>
+      <References />
+    </DtsPackage>
+  </DTSPackages>
+</Project>

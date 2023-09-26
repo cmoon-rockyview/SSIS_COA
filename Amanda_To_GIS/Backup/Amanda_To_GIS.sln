@@ -1,0 +1,17 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{D183A3D8-5FD8-494B-B014-37F57B35E655}") = "Amanda_To_GIS", "Amanda_To_GIS\Amanda_To_GIS.dtproj", "{51058AE4-D69C-4A70-B96C-7FB8F542E391}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Development|Default = Development|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{51058AE4-D69C-4A70-B96C-7FB8F542E391}.Development|Default.ActiveCfg = Development
+		{51058AE4-D69C-4A70-B96C-7FB8F542E391}.Development|Default.Build.0 = Development
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
