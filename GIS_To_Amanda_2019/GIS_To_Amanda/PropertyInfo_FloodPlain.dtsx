@@ -1,0 +1,2005 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="10/26/2012 1:45:22 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="PC-CTH-DEVBOX"
+  DTS:CreatorName="ABBOTSFORD\sbrar_adm"
+  DTS:DTSID="{6DD1B169-1C7D-46C6-92D0-93085C3D9E54}"
+  DTS:EnableConfig="True"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.948.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="PropertyInfo_FloodPlain"
+  DTS:PackageType="5"
+  DTS:VersionBuild="356"
+  DTS:VersionGUID="{49AB4B11-CACE-45CB-A803-1BDFED990E7D}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Amanda]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{90861B5D-B0EF-4EE0-8F44-4FE8E3AFBBA6}"
+      DTS:ObjectName="Amanda">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=A7DEV;User ID=/;Provider=OraOLEDB.Oracle.1;Persist Security Info=True;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[gdbdev]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{F85694A0-C6A3-48F3-90C6-A7FD4260D501}"
+      DTS:ObjectName="gdbdev">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=gdbdev;Initial Catalog=gINT;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-PropertyInfo_FloodPlain-{F85694A0-C6A3-48F3-90C6-A7FD4260D501}srv-cth-gdvdb01.gINT;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SSIS Config]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{1B693BF9-EA3F-4723-A16F-292BF90BB670}"
+      DTS:ObjectName="SSIS Config">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=srv-cth-sql03;Initial Catalog=SSIS_ConfigChris;Provider=SQLNCLI11;Integrated Security=SSPI;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SSIS Logging]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{47CDDF5D-7EDA-4B11-BCCE-3B487CF8898B}"
+      DTS:ObjectName="SSIS Logging">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=SRV-CTH-SQL03;Initial Catalog=SSIS_LoggingTest;Provider=SQLNCLI10.1;Integrated Security=SSPI;Application Name=SSIS-BL_Issued-{B32930BD-1E17-43E2-A43F-08A4A016D016}SRV-CTH-SQL03.SSIS_LoggingTest;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Configurations>
+    <DTS:Configuration
+      DTS:ConfigurationString="SSIS_Config_Location"
+      DTS:ConfigurationType="2"
+      DTS:ConfigurationVariable="\Package.Connections[SSIS Config].Properties[ConnectionString]"
+      DTS:CreationName=""
+      DTS:DTSID="{BDEEB8A8-FA5E-4EAE-B95E-9390B921B887}"
+      DTS:ObjectName="SSIS_Config_DB_Location" />
+    <DTS:Configuration
+      DTS:ConfigurationString="&quot;SSIS Config&quot;;&quot;[dbo].[SSISConfigurations]&quot;;&quot;SSIS_Logging&quot;;"
+      DTS:ConfigurationType="7"
+      DTS:CreationName=""
+      DTS:DTSID="{41510C2A-2F94-4A1A-B316-BFE5DB43EB1E}"
+      DTS:ObjectName="SSIS_Logging" />
+    <DTS:Configuration
+      DTS:ConfigurationString="&quot;SSIS Config&quot;;&quot;[dbo].[SSISConfigurations]&quot;;&quot;Amanda_OLEDB&quot;;"
+      DTS:ConfigurationType="7"
+      DTS:CreationName=""
+      DTS:DTSID="{321A4418-13E9-49E4-88C7-39EEDD53436A}"
+      DTS:ObjectName="Amanda" />
+  </DTS:Configurations>
+  <DTS:LogProviders>
+    <DTS:LogProvider
+      DTS:ConfigString="SSIS Logging"
+      DTS:CreationName="Microsoft.LogProviderSQLServer"
+      DTS:Description="Writes log entries for events to a SQL Server database"
+      DTS:DTSID="{38324AA2-A330-4303-BEF1-E449B3C864B5}"
+      DTS:ObjectName="SSIS log provider for SQL Server">
+      <DTS:ObjectData>
+        <InnerObject />
+      </DTS:ObjectData>
+    </DTS:LogProvider>
+  </DTS:LogProviders>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{0ED9B05B-1CF2-42A2-A8A5-CB8C7B601684}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_TableCount">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{DCF1283C-02B4-4F63-B8D5-5D6D580DD282}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_TEMP_TABLE">
+      <DTS:VariableValue
+        DTS:DataType="8">TEMP_PROPERTYINFO_FLOODPLAIN_RSN</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:LoggingOptions
+    DTS:FilterKind="0"
+    DTS:LoggingMode="1">
+    <DTS:Property
+      DTS:DataType="8"
+      DTS:Name="EventFilter">7,7,OnError,13,OnInformation,12,OnPreExecute,10,OnProgress,13,OnQueryCancel,12,OnTaskFailed,9,OnWarning</DTS:Property>
+    <DTS:Property
+      DTS:EventName="Diagnostic"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnError"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnExecStatusChanged"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnInformation"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPipelinePostEndOfRowset"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPipelinePostPrimeOutput"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPipelinePreEndOfRowset"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPipelinePrePrimeOutput"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPipelineRowsSent"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPostExecute"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPostValidate"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPreExecute"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPreValidate"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnProgress"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnQueryCancel"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnTaskFailed"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnVariableValueChanged"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnWarning"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:SelectedLogProviders>
+      <DTS:SelectedLogProvider
+        DTS:InstanceID="{38324AA2-A330-4303-BEF1-E449B3C864B5}" />
+    </DTS:SelectedLogProviders>
+  </DTS:LoggingOptions>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Data Transfer"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{11EC3B3D-3978-4A57-8B26-75C6134DFC4D}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Data Transfer">
+      <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0" />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Data Transfer\Create Index on temp table"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{b5a418a7-8472-457a-88c4-ca1d4e7ad133}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Create Index on temp table"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:LoggingOptions
+            DTS:FilterKind="0" />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{90861B5D-B0EF-4EE0-8F44-4FE8E3AFBBA6}"
+              SQLTask:SqlStatementSource="CREATE UNIQUE INDEX TEMP_PROPERTYINFO_FLOODPLAIN_RSN_U01 ON &#xA;TEMP_PROPERTYINFO_FLOODPLAIN_RSN (&quot;PROPERTYRSN&quot;)"
+              SQLTask:CodePage="20127" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Data Transfer\Drop Index on temp table"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{f35895f1-651c-4590-9658-ca765ed83d38}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Drop Index on temp table"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:LoggingOptions
+            DTS:FilterKind="0" />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{90861B5D-B0EF-4EE0-8F44-4FE8E3AFBBA6}"
+              SQLTask:SqlStatementSource="DECLARE&#xA;    i INTEGER;&#xA;BEGIN&#xA;    SELECT COUNT(*) INTO i FROM user_indexes WHERE index_name = 'TEMP_PROPERTYINFO_FLOODPLAIN_RSN_U01';&#xA;    IF i &gt; 0 THEN&#xA;        EXECUTE IMMEDIATE 'DROP INDEX TEMP_PROPERTYINFO_FLOODPLAIN_RSN_U01';&#xA;    END IF;&#xA;END;"
+              SQLTask:CodePage="20127" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Data Transfer\Populate temp table"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:DelayValidation="True"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{AA2CB8AB-ADC8-4E66-A7AF-1C260BFBD40B}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Populate temp table"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server v10; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:LoggingOptions
+            DTS:FilterKind="0" />
+          <DTS:ObjectData>
+            <pipeline
+              BLOBTempStoragePath=""
+              bufferTempStoragePath=""
+              version="1">
+              <components>
+                <component
+                  refId="Package\Data Transfer\Populate temp table\Lookup"
+                  componentClassID="Microsoft.Lookup"
+                  contactInfo="Lookup;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;5"
+                  description="Looks up values in a reference dataset by using exact matching."
+                  name="Lookup"
+                  usesDispositions="true"
+                  validateExternalMetadata="False"
+                  version="6">
+                  <properties>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the SQL statement that generates the lookup table."
+                      expressionType="Notify"
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT DISTINCT 
+    convert(varchar(50),RSN) AS GIS_RSN, 
+	convert(varchar(50), FLArea) GIS_InfoValue
+    
+FROM amanda.PARCELS_FLoodZONE
+WHERE RSN IS NOT NULL AND RSN &gt; 0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                      expressionType="Notify"
+                      name="SqlCommandParam"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from (SELECT DISTINCT 
+    convert(varchar(50),RSN) AS GIS_RSN, 
+	convert(varchar(50), FLArea) GIS_InfoValue
+    
+FROM amanda.PARCELS_FLoodZONE
+WHERE RSN IS NOT NULL AND RSN &gt; 0) [refTable]
+where [refTable].[GIS_RSN] = ?</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the type of connection used to access the reference dataset."
+                      name="ConnectionType"
+                      typeConverter="LookupConnectionType">0</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the cache type of the lookup table."
+                      name="CacheType"
+                      typeConverter="CacheType">2</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                      name="NoMatchBehavior"
+                      typeConverter="LookupNoMatchBehavior">1</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                      name="NoMatchCachePercentage">0</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                      name="MaxMemoryUsage">25</property>
+                    <property
+                      dataType="System.Int64"
+                      description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                      name="MaxMemoryUsage64">25</property>
+                    <property
+                      dataType="System.String"
+                      description="Indicates whether to reference metadata in an XML format."
+                      name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="GIS_RSN" dataType="DT_STR" length="50" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="GIS_InfoValue" dataType="DT_STR" length="50" precision="0" scale="0" codePage="1252"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                      name="ParameterMap">#{Package\Data Transfer\Populate temp table\Property RSN and Highest Parent RSN.Outputs[OLE DB Source Output].Columns[PARENTRSN]};</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                      name="TreatDuplicateKeysAsError">false</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Data Transfer\Populate temp table\Lookup.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[gdbdev]"
+                      connectionManagerRefId="Package.ConnectionManagers[gdbdev]"
+                      description="Connection manager used to access lookup data."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Data Transfer\Populate temp table\Lookup.Inputs[Lookup Input]"
+                      name="Lookup Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Data Transfer\Populate temp table\Lookup.Inputs[Lookup Input].Columns[PARENTRSN]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="4000"
+                          cachedName="PARENTRSN"
+                          lineageId="Package\Data Transfer\Populate temp table\Property RSN and Highest Parent RSN.Outputs[OLE DB Source Output].Columns[PARENTRSN]">
+                          <properties>
+                            <property
+                              dataType="System.String"
+                              description="Specifies the column in the reference table that a column joins."
+                              name="JoinToReferenceColumn">GIS_RSN</property>
+                            <property
+                              dataType="System.Null"
+                              description="Specifies the column in the reference table from which a column is copied."
+                              name="CopyFromReferenceColumn" />
+                          </properties>
+                        </inputColumn>
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Data Transfer\Populate temp table\Lookup.Outputs[Lookup Match Output]"
+                      errorOrTruncationOperation="Lookup"
+                      exclusionGroup="1"
+                      name="Lookup Match Output"
+                      synchronousInputId="Package\Data Transfer\Populate temp table\Lookup.Inputs[Lookup Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Data Transfer\Populate temp table\Lookup.Outputs[Lookup Match Output].Columns[GIS_RSN]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Copy Column"
+                          length="50"
+                          lineageId="Package\Data Transfer\Populate temp table\Lookup.Outputs[Lookup Match Output].Columns[GIS_RSN]"
+                          name="GIS_RSN"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.String"
+                              description="Specifies the column in the reference table from which a column is copied."
+                              name="CopyFromReferenceColumn">GIS_RSN</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Data Transfer\Populate temp table\Lookup.Outputs[Lookup Match Output].Columns[GIS_InfoValue]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Copy Column"
+                          length="50"
+                          lineageId="Package\Data Transfer\Populate temp table\Lookup.Outputs[Lookup Match Output].Columns[GIS_InfoValue]"
+                          name="GIS_InfoValue"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.String"
+                              description="Specifies the column in the reference table from which a column is copied."
+                              name="CopyFromReferenceColumn">GIS_InfoValue</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Data Transfer\Populate temp table\Lookup.Outputs[Lookup No Match Output]"
+                      description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                      exclusionGroup="1"
+                      name="Lookup No Match Output"
+                      synchronousInputId="Package\Data Transfer\Populate temp table\Lookup.Inputs[Lookup Input]">
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Data Transfer\Populate temp table\Lookup.Outputs[Lookup Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Lookup Error Output"
+                      synchronousInputId="Package\Data Transfer\Populate temp table\Lookup.Inputs[Lookup Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Data Transfer\Populate temp table\Lookup.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Data Transfer\Populate temp table\Lookup.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Data Transfer\Populate temp table\Lookup.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Data Transfer\Populate temp table\Lookup.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Data Transfer\Populate temp table\Populate temp table"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="Populate temp table"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset"></property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable">User::v_TEMP_TABLE</property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">true</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">1</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Data Transfer\Populate temp table\Populate temp table.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[Amanda]"
+                      connectionManagerRefId="Package.ConnectionManagers[Amanda]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Data Transfer\Populate temp table\Populate temp table.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Data Transfer\Populate temp table\Populate temp table.Inputs[OLE DB Destination Input].Columns[PROPERTYRSN]"
+                          cachedDataType="numeric"
+                          cachedName="PROPERTYRSN"
+                          cachedPrecision="10"
+                          externalMetadataColumnId="Package\Data Transfer\Populate temp table\Populate temp table.Inputs[OLE DB Destination Input].ExternalColumns[PROPERTYRSN]"
+                          lineageId="Package\Data Transfer\Populate temp table\Property RSN and Highest Parent RSN.Outputs[OLE DB Source Output].Columns[PROPERTYRSN]" />
+                        <inputColumn
+                          refId="Package\Data Transfer\Populate temp table\Populate temp table.Inputs[OLE DB Destination Input].Columns[PARENTRSN]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="4000"
+                          cachedName="PARENTRSN"
+                          externalMetadataColumnId="Package\Data Transfer\Populate temp table\Populate temp table.Inputs[OLE DB Destination Input].ExternalColumns[PARENTRSN]"
+                          lineageId="Package\Data Transfer\Populate temp table\Property RSN and Highest Parent RSN.Outputs[OLE DB Source Output].Columns[PARENTRSN]" />
+                        <inputColumn
+                          refId="Package\Data Transfer\Populate temp table\Populate temp table.Inputs[OLE DB Destination Input].Columns[GIS_InfoValue]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="GIS_InfoValue"
+                          externalMetadataColumnId="Package\Data Transfer\Populate temp table\Populate temp table.Inputs[OLE DB Destination Input].ExternalColumns[PROPINFOVALUE]"
+                          lineageId="Package\Data Transfer\Populate temp table\Lookup.Outputs[Lookup Match Output].Columns[GIS_InfoValue]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Data Transfer\Populate temp table\Populate temp table.Inputs[OLE DB Destination Input].ExternalColumns[PROPERTYRSN]"
+                          dataType="numeric"
+                          name="PROPERTYRSN"
+                          precision="10" />
+                        <externalMetadataColumn
+                          refId="Package\Data Transfer\Populate temp table\Populate temp table.Inputs[OLE DB Destination Input].ExternalColumns[PARENTRSN]"
+                          dataType="numeric"
+                          name="PARENTRSN"
+                          precision="10" />
+                        <externalMetadataColumn
+                          refId="Package\Data Transfer\Populate temp table\Populate temp table.Inputs[OLE DB Destination Input].ExternalColumns[PROPINFOVALUE]"
+                          codePage="1252"
+                          dataType="str"
+                          length="2000"
+                          name="PROPINFOVALUE" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Data Transfer\Populate temp table\Populate temp table.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\Data Transfer\Populate temp table\Populate temp table.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Data Transfer\Populate temp table\Populate temp table.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Data Transfer\Populate temp table\Populate temp table.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Data Transfer\Populate temp table\Populate temp table.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Data Transfer\Populate temp table\Populate temp table.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Data Transfer\Populate temp table\Property RSN and Highest Parent RSN"
+                  componentClassID="Microsoft.OLEDBSource"
+                  contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+                  description="OLE DB Source"
+                  name="Property RSN and Highest Parent RSN"
+                  usesDispositions="true"
+                  validateExternalMetadata="False"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset"></property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT a.propertyrsn,
+      REPLACE(SYS_CONNECT_BY_PATH(DECODE(LEVEL,1,a.propertyrsn),'~'),'~') ParentRSN, CAST(a.PropGISID1 as int) PropGISID1 
+FROM amanda.property a
+WHERE a.statuscode = 1 /* Active */
+START WITH a.parentpropertyrsn IS NULL  
+CONNECT BY PRIOR 
+      a.propertyrsn = a.parentpropertyrsn</property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">true</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">2</property>
+                    <property
+                      dataType="System.String"
+                      description="The mappings between the parameters in the SQL command and variables."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Data Transfer\Populate temp table\Property RSN and Highest Parent RSN.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[Amanda]"
+                      connectionManagerRefId="Package.ConnectionManagers[Amanda]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Data Transfer\Populate temp table\Property RSN and Highest Parent RSN.Outputs[OLE DB Source Output]"
+                      name="OLE DB Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Data Transfer\Populate temp table\Property RSN and Highest Parent RSN.Outputs[OLE DB Source Output].Columns[PROPERTYRSN]"
+                          dataType="numeric"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Data Transfer\Populate temp table\Property RSN and Highest Parent RSN.Outputs[OLE DB Source Output].ExternalColumns[PROPERTYRSN]"
+                          lineageId="Package\Data Transfer\Populate temp table\Property RSN and Highest Parent RSN.Outputs[OLE DB Source Output].Columns[PROPERTYRSN]"
+                          name="PROPERTYRSN"
+                          precision="10"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Data Transfer\Populate temp table\Property RSN and Highest Parent RSN.Outputs[OLE DB Source Output].Columns[PARENTRSN]"
+                          codePage="20127"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Data Transfer\Populate temp table\Property RSN and Highest Parent RSN.Outputs[OLE DB Source Output].ExternalColumns[PARENTRSN]"
+                          length="4000"
+                          lineageId="Package\Data Transfer\Populate temp table\Property RSN and Highest Parent RSN.Outputs[OLE DB Source Output].Columns[PARENTRSN]"
+                          name="PARENTRSN"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Data Transfer\Populate temp table\Property RSN and Highest Parent RSN.Outputs[OLE DB Source Output].Columns[PROPGISID1]"
+                          dataType="numeric"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Data Transfer\Populate temp table\Property RSN and Highest Parent RSN.Outputs[OLE DB Source Output].ExternalColumns[PROPGISID1]"
+                          lineageId="Package\Data Transfer\Populate temp table\Property RSN and Highest Parent RSN.Outputs[OLE DB Source Output].Columns[PROPGISID1]"
+                          name="PROPGISID1"
+                          precision="18"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Data Transfer\Populate temp table\Property RSN and Highest Parent RSN.Outputs[OLE DB Source Output].ExternalColumns[PROPERTYRSN]"
+                          dataType="numeric"
+                          name="PROPERTYRSN"
+                          precision="10" />
+                        <externalMetadataColumn
+                          refId="Package\Data Transfer\Populate temp table\Property RSN and Highest Parent RSN.Outputs[OLE DB Source Output].ExternalColumns[PARENTRSN]"
+                          codePage="20127"
+                          dataType="str"
+                          length="4000"
+                          name="PARENTRSN" />
+                        <externalMetadataColumn
+                          refId="Package\Data Transfer\Populate temp table\Property RSN and Highest Parent RSN.Outputs[OLE DB Source Output].ExternalColumns[PROPGISID1]"
+                          dataType="numeric"
+                          name="PROPGISID1"
+                          precision="38" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Data Transfer\Populate temp table\Property RSN and Highest Parent RSN.Outputs[OLE DB Source Error Output]"
+                      isErrorOut="true"
+                      name="OLE DB Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Data Transfer\Populate temp table\Property RSN and Highest Parent RSN.Outputs[OLE DB Source Error Output].Columns[PROPERTYRSN]"
+                          dataType="numeric"
+                          lineageId="Package\Data Transfer\Populate temp table\Property RSN and Highest Parent RSN.Outputs[OLE DB Source Error Output].Columns[PROPERTYRSN]"
+                          name="PROPERTYRSN"
+                          precision="10" />
+                        <outputColumn
+                          refId="Package\Data Transfer\Populate temp table\Property RSN and Highest Parent RSN.Outputs[OLE DB Source Error Output].Columns[PARENTRSN]"
+                          codePage="20127"
+                          dataType="str"
+                          length="4000"
+                          lineageId="Package\Data Transfer\Populate temp table\Property RSN and Highest Parent RSN.Outputs[OLE DB Source Error Output].Columns[PARENTRSN]"
+                          name="PARENTRSN" />
+                        <outputColumn
+                          refId="Package\Data Transfer\Populate temp table\Property RSN and Highest Parent RSN.Outputs[OLE DB Source Error Output].Columns[PROPGISID1]"
+                          dataType="numeric"
+                          lineageId="Package\Data Transfer\Populate temp table\Property RSN and Highest Parent RSN.Outputs[OLE DB Source Error Output].Columns[PROPGISID1]"
+                          name="PROPGISID1"
+                          precision="38" />
+                        <outputColumn
+                          refId="Package\Data Transfer\Populate temp table\Property RSN and Highest Parent RSN.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Data Transfer\Populate temp table\Property RSN and Highest Parent RSN.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Data Transfer\Populate temp table\Property RSN and Highest Parent RSN.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Data Transfer\Populate temp table\Property RSN and Highest Parent RSN.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Data Transfer\Populate temp table.Paths[Lookup Match Output]"
+                  endId="Package\Data Transfer\Populate temp table\Populate temp table.Inputs[OLE DB Destination Input]"
+                  name="Lookup Match Output"
+                  startId="Package\Data Transfer\Populate temp table\Lookup.Outputs[Lookup Match Output]" />
+                <path
+                  refId="Package\Data Transfer\Populate temp table.Paths[OLE DB Source Output]"
+                  endId="Package\Data Transfer\Populate temp table\Lookup.Inputs[Lookup Input]"
+                  name="OLE DB Source Output"
+                  startId="Package\Data Transfer\Populate temp table\Property RSN and Highest Parent RSN.Outputs[OLE DB Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Data Transfer\Re-Enable the trigger on propertyInfo Table"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{E6ABE548-C827-4BC9-A709-6C56FA1E0FCE}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Re-Enable the trigger on propertyInfo Table"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:LoggingOptions
+            DTS:FilterKind="0" />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{90861B5D-B0EF-4EE0-8F44-4FE8E3AFBBA6}"
+              SQLTask:SqlStatementSource="ALTER TRIGGER AMANDA.PROPERTYINFO_UPD_LOG ENABLE"
+              SQLTask:CodePage="20127" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Data Transfer\Truncate Temp table"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{66688b50-0e48-4db1-8ca5-6f9a1f1f3dec}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Truncate Temp table"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:LoggingOptions
+            DTS:FilterKind="0" />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{90861B5D-B0EF-4EE0-8F44-4FE8E3AFBBA6}"
+              SQLTask:BypassPrepare="False"
+              SQLTask:SqlStatementSource="TRUNCATE TABLE TEMP_PROPERTYINFO_FLOODPLAIN_RSN"
+              SQLTask:CodePage="20127" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Data Transfer\Update PropertyInfo Value"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:DelayValidation="True"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{C5D49BB1-88A8-4090-B323-A200436FE26F}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Update PropertyInfo Value"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:LoggingOptions
+            DTS:FilterKind="0" />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{90861B5D-B0EF-4EE0-8F44-4FE8E3AFBBA6}"
+              SQLTask:SqlStatementSource="UPDATE AMANDA.PropertyInfo a &#xA;SET (PropInfoValue, InfoValueUpper, StampDate, StampUser) =&#xA;&#x9;(SELECT b.PROPINFOVALUE, UPPER(b.PROPINFOVALUE) InfoValueUpper, SYSDATE, USER   &#xA;&#x9; FROM TEMP_PROPERTYINFO_FLOODPLAIN_RSN b&#xA;&#x9; WHERE b.PropertyRSN = a.PropertyRSN&#xA;&#x9; )&#xA;WHERE a. PropertyInfoCode = 320 &#xA;  AND EXISTS (SELECT 0 FROM TEMP_PROPERTYINFO_FLOODPLAIN_RSN b&#xA;              WHERE b.PropertyRSN = a.PropertyRSN)"
+              SQLTask:CodePage="20127" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Data Transfer.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{56A5CDC5-10EF-4CE5-BF01-C5B4ACEF916E}"
+          DTS:From="Package\Data Transfer\Re-Enable the trigger on propertyInfo Table"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Data Transfer\Truncate Temp table" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Data Transfer.PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{308CC5D3-59D1-48B0-A70B-DD01912CC4D4}"
+          DTS:From="Package\Data Transfer\Populate temp table"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package\Data Transfer\Create Index on temp table" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Data Transfer.PrecedenceConstraints[Constraint 2]"
+          DTS:CreationName=""
+          DTS:DTSID="{0B9C542D-12DC-4777-9C3D-41CA063FB4A5}"
+          DTS:From="Package\Data Transfer\Drop Index on temp table"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 2"
+          DTS:To="Package\Data Transfer\Populate temp table" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Data Transfer.PrecedenceConstraints[Constraint 3]"
+          DTS:CreationName=""
+          DTS:DTSID="{774E2D04-F088-41DA-A152-D4E5D991686B}"
+          DTS:From="Package\Data Transfer\Create Index on temp table"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 3"
+          DTS:To="Package\Data Transfer\Update PropertyInfo Value"
+          DTS:Value="2" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Data Transfer.PrecedenceConstraints[Constraint 5]"
+          DTS:CreationName=""
+          DTS:DTSID="{82A58421-06BD-4D56-A0A4-BA7E6AEEE5E4}"
+          DTS:From="Package\Data Transfer\Update PropertyInfo Value"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 5"
+          DTS:To="Package\Data Transfer\Re-Enable the trigger on propertyInfo Table" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Initialization"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{589F20B3-9E8D-43DE-8EF5-C18B34FCE317}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Initialization">
+      <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0" />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Initialization\Check if Temporary Table Exists"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{32A467A6-4AEA-41B5-B451-29AC3C4AD14F}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Check if Temporary Table Exists"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:LoggingOptions
+            DTS:FilterKind="0" />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{90861B5D-B0EF-4EE0-8F44-4FE8E3AFBBA6}"
+              SQLTask:BypassPrepare="False"
+              SQLTask:SqlStatementSource="SELECT Count(*) as TableCount &#xA;FROM User_Objects &#xA;WHERE Object_Name = 'TEMP_PROPERTYINFO_FLOODPLAIN_RSN'"
+              SQLTask:CodePage="20127"
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="TableCount"
+                SQLTask:DtsVariableName="User::v_TableCount" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Initialization\Create Index on temp table"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{81b05cf0-5d40-4046-afc0-252dd3ca24a3}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Create Index on temp table"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:LoggingOptions
+            DTS:FilterKind="0" />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{90861B5D-B0EF-4EE0-8F44-4FE8E3AFBBA6}"
+              SQLTask:SqlStatementSource="CREATE UNIQUE INDEX TEMP_PROPERTYINFO_FLOODPLAIN_RSN_U01 ON &#xA;TEMP_PROPERTYINFO_FLOODPLAIN_RSN (&quot;PROPERTYRSN&quot;)"
+              SQLTask:CodePage="20127" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Initialization\Create property info record if needed"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{90F114A3-E963-415D-B7CB-C65845BE9450}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Create property info record if needed"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="1">
+          <DTS:Variables />
+          <DTS:LoggingOptions
+            DTS:FilterKind="0" />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{90861B5D-B0EF-4EE0-8F44-4FE8E3AFBBA6}"
+              SQLTask:SqlStatementSource="INSERT INTO Amanda.PropertyInfo &#xA;(PROPERTYRSN, PROPERTYINFOCODE, PROPINFOVALUE, INFOVALUEUPPER, STAMPDATE, STAMPUSER)&#xA;SELECT PropertyRSN, 320,NULL, NULL, SYSDATE, USER &#xA;FROM (SELECT PropertyRSN FROM Amanda.Property&#xA;    WHERE property.STATUSCODE = 1&#xA;    MINUS &#xA;    SELECT DISTINCT PropertyRSN FROM PropertyInfo &#xA;    WHERE PropertyInfoCode = 320)"
+              SQLTask:CodePage="20127" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Initialization\Create Temporary Table"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{23C1382B-086B-43F2-9793-4DFFC83BA79F}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Create Temporary Table"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:LoggingOptions
+            DTS:FilterKind="0" />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{90861B5D-B0EF-4EE0-8F44-4FE8E3AFBBA6}"
+              SQLTask:SqlStatementSource="CREATE TABLE  TEMP_PROPERTYINFO_FLOODPLAIN_RSN AS &#xA;SELECT PROPERTYRSN, PROPERTYRSN as PARENTRSN, PROPINFOVALUE&#xA;FROM AMANDA.PROPERTYINFO &#xA;WHERE 1=0"
+              SQLTask:CodePage="20127" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Initialization\Disable Trigger on PropertyInfo Table"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{7FFD2A29-22C8-484E-BF35-E3000C1903A8}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Disable Trigger on PropertyInfo Table"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="1">
+          <DTS:Variables />
+          <DTS:LoggingOptions
+            DTS:FilterKind="0" />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{90861B5D-B0EF-4EE0-8F44-4FE8E3AFBBA6}"
+              SQLTask:SqlStatementSource="ALTER TRIGGER AMANDA.PROPERTYINFO_UPD_LOG DISABLE"
+              SQLTask:CodePage="20127" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Initialization\Set default PropertyInfo Value"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{D4C56E3C-BAC4-4E48-9FCB-793C19F4337B}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Set default PropertyInfo Value"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="1">
+          <DTS:Variables />
+          <DTS:LoggingOptions
+            DTS:FilterKind="0" />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{90861B5D-B0EF-4EE0-8F44-4FE8E3AFBBA6}"
+              SQLTask:SqlStatementSource="UPDATE Amanda.PropertyInfo &#xA;SET PropInfoValue = NULL, InfoValueUpper = NULL, &#xA;  StampDate = SYSDATE, StampUser = USER &#xA;WHERE (InfoValueUpper IS NOT NULL) &#xA;  AND PropertyInfoCode = 320&#xA;  AND 1 = (SELECT StatusCode FROM Property WHERE PropertyRSN = PropertyInfo.PropertyRSN)"
+              SQLTask:CodePage="20127" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Initialization\Set v_TEMP_TABLE"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{3CD8B824-59A6-4353-8962-378AFFF4611E}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Set v_TEMP_TABLE"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="1">
+          <DTS:Variables />
+          <DTS:LoggingOptions
+            DTS:FilterKind="0" />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{90861B5D-B0EF-4EE0-8F44-4FE8E3AFBBA6}"
+              SQLTask:SqlStatementSource="SELECT '&quot;' || USER || '&quot;.TEMP_PROPERTYINFO_FLOODPLAIN_RSN' TEMP_TABLE_NAME FROM DUAL"
+              SQLTask:CodePage="20127"
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="TEMP_TABLE_NAME"
+                SQLTask:DtsVariableName="User::v_TEMP_TABLE" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Initialization\Truncate Temp table"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{B73A42CA-4AD9-4180-AB33-4AF48F46EB1D}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Truncate Temp table"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="1">
+          <DTS:Variables />
+          <DTS:LoggingOptions
+            DTS:FilterKind="0" />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{90861B5D-B0EF-4EE0-8F44-4FE8E3AFBBA6}"
+              SQLTask:SqlStatementSource="TRUNCATE TABLE TEMP_PROPERTYINFO_FLOODPLAIN_RSN"
+              SQLTask:CodePage="20127" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Initialization.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{2FD31AA8-9012-483A-A7E1-E966C21BB78A}"
+          DTS:EvalOp="1"
+          DTS:Expression="@[User::v_TableCount] &gt; &quot;0&quot;"
+          DTS:From="Package\Initialization\Check if Temporary Table Exists"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Initialization\Set v_TEMP_TABLE" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Initialization.PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{5646348C-3BA8-43DF-BB16-CA30D26ED2A0}"
+          DTS:From="Package\Initialization\Set v_TEMP_TABLE"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package\Initialization\Truncate Temp table" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Initialization.PrecedenceConstraints[Constraint 2]"
+          DTS:CreationName=""
+          DTS:DTSID="{A84C228C-869D-480D-8109-5C29377B7311}"
+          DTS:From="Package\Initialization\Disable Trigger on PropertyInfo Table"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 2"
+          DTS:To="Package\Initialization\Create property info record if needed" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Initialization.PrecedenceConstraints[Constraint 3]"
+          DTS:CreationName=""
+          DTS:DTSID="{80337BB6-B91B-4346-B3BC-592B317E1B63}"
+          DTS:EvalOp="1"
+          DTS:Expression="@[User::v_TableCount] == &quot;0&quot;"
+          DTS:From="Package\Initialization\Check if Temporary Table Exists"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 3"
+          DTS:To="Package\Initialization\Create Temporary Table" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Initialization.PrecedenceConstraints[Constraint 4]"
+          DTS:CreationName=""
+          DTS:DTSID="{856C4A7F-2A48-4E58-9B83-009B276F49B7}"
+          DTS:From="Package\Initialization\Create property info record if needed"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 4"
+          DTS:To="Package\Initialization\Set default PropertyInfo Value" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Initialization.PrecedenceConstraints[Constraint 5]"
+          DTS:CreationName=""
+          DTS:DTSID="{9CA65A5D-D065-4C35-9DBC-08862F092A1B}"
+          DTS:From="Package\Initialization\Create Temporary Table"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 5"
+          DTS:To="Package\Initialization\Create Index on temp table" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Initialization.PrecedenceConstraints[Constraint 6]"
+          DTS:CreationName=""
+          DTS:DTSID="{615B562B-9EC7-4255-8E5B-6939192013AC}"
+          DTS:From="Package\Initialization\Truncate Temp table"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 6"
+          DTS:To="Package\Initialization\Disable Trigger on PropertyInfo Table" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Initialization.PrecedenceConstraints[Constraint 7]"
+          DTS:CreationName=""
+          DTS:DTSID="{B2C93A4A-A35F-4130-9A99-FC44DF4ABA6C}"
+          DTS:From="Package\Initialization\Create Index on temp table"
+          DTS:ObjectName="Constraint 7"
+          DTS:To="Package\Initialization\Set v_TEMP_TABLE"
+          DTS:Value="2" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{EA5FD555-1320-40F8-A87A-73D844B9B9D9}"
+      DTS:From="Package\Initialization"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Data Transfer" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph" xmlns:mssge="clr-namespace:Microsoft.SqlServer.Graph.Extended;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+        <NodeLayout
+          Size="192,44"
+          Id="Package\Data Transfer\Create Index on temp table"
+          TopLeft="241.358490566038,86.3962264150944" />
+        <NodeLayout
+          Size="192,44"
+          Id="Package\Data Transfer\Drop Index on temp table"
+          TopLeft="16.7169811320755,16.3207547169811" />
+        <NodeLayout
+          Size="174,42"
+          Id="Package\Data Transfer\Populate temp table"
+          TopLeft="241.358490566038,15.3584905660377" />
+        <NodeLayout
+          Size="192,44"
+          Id="Package\Data Transfer\Re-Enable the trigger on propertyInfo Table"
+          TopLeft="16.7169811320755,157.264150943396" />
+        <NodeLayout
+          Size="192,44"
+          Id="Package\Data Transfer\Truncate Temp table"
+          TopLeft="241.358490566038,156.471698113208" />
+        <NodeLayout
+          Size="192,44"
+          Id="Package\Data Transfer\Update PropertyInfo Value"
+          TopLeft="16.7169811320755,86.7735849056603" />
+        <EdgeLayout
+          Id="Package\Data Transfer.PrecedenceConstraints[Constraint]"
+          TopLeft="208.452830188679,179.22641509434">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="32.9056603773585,-0.792452830188608"
+              Start="0,0"
+              End="25.4056603773585,-0.792452830188608">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="16.4528301886793,0" />
+                  <mssgle:LineSegment
+                    End="16.4528301886793,-0.792452830188608" />
+                  <mssgle:LineSegment
+                    End="25.4056603773585,-0.792452830188608" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Transfer.PrecedenceConstraints[Constraint 1]"
+          TopLeft="328.358490566038,57.3584905660377">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="9,29.0377358490567"
+              Start="0,0"
+              End="9,21.5377358490567">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,10.5188679245284" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,10.5188679245284"
+                    Point2="0,14.5188679245284"
+                    Point3="4,14.5188679245284" />
+                  <mssgle:LineSegment
+                    End="5,14.5188679245284" />
+                  <mssgle:CubicBezierSegment
+                    Point1="5,14.5188679245284"
+                    Point2="9,14.5188679245284"
+                    Point3="9,18.5188679245284" />
+                  <mssgle:LineSegment
+                    End="9,21.5377358490567" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Transfer.PrecedenceConstraints[Constraint 2]"
+          TopLeft="208.716981132075,37.3396226415094">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="32.6415094339625,0"
+              Start="0,0"
+              End="25.1415094339625,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="25.1415094339625,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Transfer.PrecedenceConstraints[Constraint 3]"
+          TopLeft="241.358490566038,108.358490566038">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="-32.9056603773585,0.377358490565939"
+              Start="0,0"
+              End="-25.4056603773585,0.377358490565939">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-16.4528301886792,0" />
+                  <mssgle:LineSegment
+                    End="-16.4528301886792,0.377358490565939" />
+                  <mssgle:LineSegment
+                    End="-25.4056603773585,0.377358490565939" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-41.7572833136792,-21.609375,50.60890625,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Transfer.PrecedenceConstraints[Constraint 5]"
+          TopLeft="112.566037735849,130.698113207547">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,26.566037735849"
+              Start="0,0"
+              End="0,19.066037735849">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,19.066037735849" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="451,256"
+          Size="451,300"
+          Id="Package\Data Transfer"
+          TopLeft="505.5,5.5" />
+        <NodeLayout
+          Size="163,44"
+          Id="Package\Initialization\Check if Temporary Table Exists"
+          TopLeft="22.2264150943397,24.2075471698115" />
+        <NodeLayout
+          Size="192,44"
+          Id="Package\Initialization\Create Index on temp table"
+          TopLeft="232.188679245283,98.6603773584907" />
+        <NodeLayout
+          Size="163,44"
+          Id="Package\Initialization\Create property info record if needed"
+          TopLeft="22.2264150943397,322.849056603774" />
+        <NodeLayout
+          Size="163,44"
+          Id="Package\Initialization\Create Temporary Table"
+          TopLeft="252.11320754717,24.2075471698115" />
+        <NodeLayout
+          Size="163,44"
+          Id="Package\Initialization\Disable Trigger on PropertyInfo Table"
+          TopLeft="22.2264150943397,248.132075471698" />
+        <NodeLayout
+          Size="163,44"
+          Id="Package\Initialization\Set default PropertyInfo Value"
+          TopLeft="248.150943396226,321.867924528302" />
+        <NodeLayout
+          Size="163,44"
+          Id="Package\Initialization\Set v_TEMP_TABLE"
+          TopLeft="22.2264150943397,98.8490566037738" />
+        <NodeLayout
+          Size="163,44"
+          Id="Package\Initialization\Truncate Temp table"
+          TopLeft="22.2264150943397,173.490566037736" />
+        <EdgeLayout
+          Id="Package\Initialization.PrecedenceConstraints[Constraint]"
+          TopLeft="103.584905660377,68.1320754716983">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,30.7169811320755"
+              Start="0,0"
+              End="0,23.2169811320755">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,23.2169811320755" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-8,3.60849056603774,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Initialization.PrecedenceConstraints[Constraint 1]"
+          TopLeft="82.8301886792453,142.773584905661">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="20.7547169811321,30.7169811320755"
+              Start="0,0"
+              End="20.7547169811321,23.2169811320755">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,23.0566037735848" />
+                  <mssgle:LineSegment
+                    End="20.7547169811321,23.0566037735848" />
+                  <mssgle:LineSegment
+                    End="20.7547169811321,23.2169811320755" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Initialization.PrecedenceConstraints[Constraint 2]"
+          TopLeft="82.8301886792453,292.056603773585">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="20.7547169811321,30.7924528301886"
+              Start="0,0"
+              End="20.7547169811321,23.2924528301886">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,23.0943396226414" />
+                  <mssgle:LineSegment
+                    End="20.7547169811321,23.0943396226414" />
+                  <mssgle:LineSegment
+                    End="20.7547169811321,23.2924528301886" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Initialization.PrecedenceConstraints[Constraint 3]"
+          TopLeft="184.943396226415,46.1698113207549">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="67.1698113207547,0"
+              Start="0,0"
+              End="59.6698113207547,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="59.6698113207547,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="21.8349056603773,5,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Initialization.PrecedenceConstraints[Constraint 4]"
+          TopLeft="184.943396226415,344.811320754717">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="63.2075471698113,-0.981132075471692"
+              Start="0,0"
+              End="55.7075471698113,-0.981132075471692">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="31.6226415094341,0" />
+                  <mssgle:LineSegment
+                    End="31.6226415094341,-0.981132075471692" />
+                  <mssgle:LineSegment
+                    End="55.7075471698113,-0.981132075471692" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Initialization.PrecedenceConstraints[Constraint 5]"
+          TopLeft="312.716981132076,68.1320754716983">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="15.3207547169811,30.5283018867924"
+              Start="0,0"
+              End="15.3207547169811,23.0283018867924">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,22.9056603773583" />
+                  <mssgle:LineSegment
+                    End="15.3207547169811,22.9056603773583" />
+                  <mssgle:LineSegment
+                    End="15.3207547169811,23.0283018867924" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Initialization.PrecedenceConstraints[Constraint 6]"
+          TopLeft="82.8301886792453,217.415094339623">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="20.7547169811321,30.7169811320754"
+              Start="0,0"
+              End="20.7547169811321,23.2169811320754">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,23.0566037735848" />
+                  <mssgle:LineSegment
+                    End="20.7547169811321,23.0566037735848" />
+                  <mssgle:LineSegment
+                    End="20.7547169811321,23.2169811320754" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Initialization.PrecedenceConstraints[Constraint 7]"
+          TopLeft="232.188679245283,120.622641509434">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="-47.2452830188679,0.188679245283083"
+              Start="0,0"
+              End="-39.7452830188679,0.188679245283083">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-23.6226415094338,0" />
+                  <mssgle:LineSegment
+                    End="-23.6226415094338,0.188679245283083" />
+                  <mssgle:LineSegment
+                    End="-39.7452830188679,0.188679245283083" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-48.9270946344338,-21.609375,50.60890625,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="459,381"
+          Size="459,425"
+          Id="Package\Initialization"
+          TopLeft="5.5,5.68867924528286" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="464.5,218.188679245283">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="41,-62.6886792452829"
+              Start="0,0"
+              End="33.5,-62.6886792452829">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="16.5,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="16.5,0"
+                    Point2="20.5,0"
+                    Point3="20.5,-4" />
+                  <mssgle:LineSegment
+                    End="20.5,-58.6886792452829" />
+                  <mssgle:CubicBezierSegment
+                    Point1="20.5,-58.6886792452829"
+                    Point2="20.5,-62.6886792452829"
+                    Point3="24.5,-62.6886792452829" />
+                  <mssgle:LineSegment
+                    End="33.5,-62.6886792452829" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <AnnotationLayout
+          Text="Created 2023-01-23 N. Park (copied from PropertyInfo_Fire.dtsx)&#xA;&#xA;- This transfers the PropertyInfo about Flood Pain from GIS to AMANDA &#xA;- Property Info Code: 320 (&quot;Flood Plain&quot; - Multipick. Eg: &quot;A,B&quot;)&#xA;- See https://spweb.abbotsford.ca/dept/corporate/bts/apps/_layouts/15/start.aspx#/SitePages/Home.aspx?RootFolder=%2Fdept%2Fcorporate%2Fbts%2Fapps%2FSitePages%2FETL&amp;FolderCTID=0x012000E10A3CF3256D9A4186B55338C267B2E0&amp;View=%7B8FC551D9%2D47E2%2D46AC%2D9202%2DFE9123976A41%7D&#xA;for general documents on SSIS implementations in CoA. &#xA;- See &quot;Amanda Property Info - Example&quot; document particularly. &#xA;&#xA;"
+          ParentId="Package"
+          Size="440,201"
+          Id="e39ee298-cd84-4758-a0f5-d3c9c359608b"
+          TopLeft="507.688679245283,305.462264150943">
+          <AnnotationLayout.FontInfo>
+            <mssge:FontInfo
+              Family="Tahoma"
+              Size="11.25"
+              Color="#FF080000">
+              <mssge:FontInfo.TextDecorations>
+                <av:TextDecorationCollection />
+              </mssge:FontInfo.TextDecorations>
+            </mssge:FontInfo>
+          </AnnotationLayout.FontInfo>
+        </AnnotationLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <ConnectionManager
+    design-time-name="Package.ConnectionManagers[Amanda]">
+    <DataSourceID>Amanda</DataSourceID>
+  </ConnectionManager>
+  <ConnectionManager
+    design-time-name="Package.ConnectionManagers[SSIS Config]">
+    <DataSourceID>SSIS Config</DataSourceID>
+  </ConnectionManager>
+  <ConnectionManager
+    design-time-name="Package.ConnectionManagers[SSIS Logging]">
+    <DataSourceID>SSIS Logging</DataSourceID>
+  </ConnectionManager>
+  <TaskHost
+    design-time-name="Package\Data Transfer\Populate temp table">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="258,42"
+          Id="Package\Data Transfer\Populate temp table\Property RSN and Highest Parent RSN"
+          TopLeft="5.5,5.5" />
+        <NodeLayout
+          Size="160,44"
+          Id="Package\Data Transfer\Populate temp table\Lookup"
+          TopLeft="5.5,171.179245283019" />
+        <NodeLayout
+          Size="174,42"
+          Id="Package\Data Transfer\Populate temp table\Populate temp table"
+          TopLeft="4.5,337.896226415094" />
+        <EdgeLayout
+          Id="Package\Data Transfer\Populate temp table.Paths[Lookup Match Output]"
+          TopLeft="88.5,215.179245283019">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,122.716981132075"
+              Start="0,0"
+              End="0,115.216981132075">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,115.216981132075" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-48.19138671875,51.8038030660375,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Transfer\Populate temp table.Paths[OLE DB Source Output]"
+          TopLeft="134.5,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="-49,123.679245283019"
+              Start="0,0"
+              End="-49,116.179245283019">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,57.8396226415095" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,57.8396226415095"
+                    Point2="0,61.8396226415095"
+                    Point3="-4,61.8396226415095" />
+                  <mssgle:LineSegment
+                    End="-45,61.8396226415095" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-45,61.8396226415095"
+                    Point2="-49,61.8396226415095"
+                    Point3="-49,65.8396226415095" />
+                  <mssgle:LineSegment
+                    End="-49,116.179245283019" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Data Transfer\Populate temp table\Lookup">
+    <Properties>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q2:string"></Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q3:int">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q4:boolean">false</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Data Transfer\Populate temp table\Populate temp table">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

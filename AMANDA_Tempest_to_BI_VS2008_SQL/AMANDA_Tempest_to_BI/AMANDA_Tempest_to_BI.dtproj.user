@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataTransformationsUserConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Configurations>
+    <Configuration>
+      <Name>Development</Name>
+      <Options>
+        <AssessmentRuleSuppressionSetting />
+        <UseWinAuth>false</UseWinAuth>
+        <WinAuthUserName />
+        <WinAuthDomain />
+        <CreateDeploymentUtility>true</CreateDeploymentUtility>
+        <UserIDs>
+          <ConfigurationSetting>
+            <Id>AMANDA</Id>
+            <Name>AMANDA</Name>
+            <Value xsi:type="xsd:string">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAeETvCcJr30Se/z7k1VSDwAAAAAAOAAAAQQBNAEEATgBEAEEAAAADZgAAwAAAABAAAACxXkCV1kdnhNGruAu5OWG8AAAAAASAAACgAAAAEAAAAJogvlG2Dc2VIC+TwoETUHsIAAAADFsnehTa0QYUAAAA3A2XM8zBgNKUEcKh+b3WHc/AHNA=</Value>
+          </ConfigurationSetting>
+          <ConfigurationSetting>
+            <Id>Tempest</Id>
+            <Name>Tempest</Name>
+            <Value xsi:type="xsd:string">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAeETvCcJr30Se/z7k1VSDwAAAAAAQAAAAVABlAG0AcABlAHMAdAAAAANmAADAAAAAEAAAACEENeLtesvIeP7rMnSN9IQAAAAABIAAAKAAAAAQAAAAcJK2R91qKKnsuspN2kQoIAgAAADG8Qfzu/1B5hQAAAC72eHfRdKyDjnJKCTHsF9DURBoXw==</Value>
+          </ConfigurationSetting>
+        </UserIDs>
+        <UserPasswords />
+        <OfflineMode>false</OfflineMode>
+        <ProgressReporting>true</ProgressReporting>
+        <ParameterConfigurationSensitiveValues />
+      </Options>
+    </Configuration>
+  </Configurations>
+</DataTransformationsUserConfiguration>

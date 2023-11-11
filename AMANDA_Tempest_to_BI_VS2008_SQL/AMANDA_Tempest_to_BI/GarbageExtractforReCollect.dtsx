@@ -1,0 +1,2960 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="1/30/2014 11:27:30 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="PC-CTH-DBTOOLS"
+  DTS:CreatorName="ABBOTSFORD\dbadmin"
+  DTS:DTSID="{2CFEA5A1-0F89-48BB-B97A-8D509942E83F}"
+  DTS:EnableConfig="True"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.948.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="GarbageExtractforReCollect"
+  DTS:PackageType="5"
+  DTS:VersionBuild="40"
+  DTS:VersionGUID="{A3D9A319-61EF-464B-B2EE-C1116C48F10A}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Amanda]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{64E6E478-A2BE-48BF-BE3C-20A82FFE5406}"
+      DTS:ObjectName="Amanda">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=A7DEV;User ID=/;Provider=OraOLEDB.Oracle.1;Persist Security Info=True;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[BI Data Staging]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{B5C997A1-FCD5-4A42-BC3D-3F42A18DD2B7}"
+      DTS:ObjectName="BI Data Staging">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=SRV-CTH-SQL03;Initial Catalog=BI_DataStagingTest;Provider=SQLNCLI10.1;Integrated Security=SSPI;Application Name=SSIS-BL_Issued-{59D58563-1594-4A03-BA10-B3AE9D51F556}SRV-CTH-SQL03.BI_DataStagingTest;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Flat File Connection Manager - ReCollect]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{22D589F9-3C91-48CE-85A8-F9AAFAB25983}"
+      DTS:ObjectName="Flat File Connection Manager - ReCollect">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="1033"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:ColumnNamesInFirstDataRow="True"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="\\srv-cth-ftp02\RecollectFTP\Test\ReCollect.csv">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="20"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="HOUSE"
+              DTS:DTSID="{5604FA9E-D92B-439D-B1E2-DEB0B4EED473}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="40"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="FULL_STREET_NAME"
+              DTS:DTSID="{573157A1-2994-4482-8BEA-7CB68070615B}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="10"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="CITY"
+              DTS:DTSID="{D58B9039-B2F2-459E-B749-9AA616B1EB8A}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:MaximumWidth="100"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="ZONE"
+              DTS:DTSID="{DE467972-F000-4ECE-A0EF-D7F11FB2F481}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SSIS Config]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{8F466C5B-E43B-44F9-B483-91A33A06C4DA}"
+      DTS:ObjectName="SSIS Config">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=srv-cth-sql03;Initial Catalog=SSIS_ConfigChris;Provider=SQLNCLI11;Integrated Security=SSPI;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SSIS Logging]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{E7180C86-CC42-4EEC-A2EB-79D5904DF29C}"
+      DTS:ObjectName="SSIS Logging">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=SRV-CTH-SQL03;Initial Catalog=SSIS_LoggingTest;Provider=SQLNCLI10.1;Integrated Security=SSPI;Application Name=SSIS-BL_Issued-{B32930BD-1E17-43E2-A43F-08A4A016D016}SRV-CTH-SQL03.SSIS_LoggingTest;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Tempest]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{7D09F201-7999-41E4-A7C9-CC508D88CCA5}"
+      DTS:ObjectName="Tempest">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=TTST;User ID=/;Provider=OraOLEDB.Oracle.1;Persist Security Info=True;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Configurations>
+    <DTS:Configuration
+      DTS:ConfigurationString="SSIS_Config_Location"
+      DTS:ConfigurationType="2"
+      DTS:ConfigurationVariable="\Package.Connections[SSIS Config].Properties[ConnectionString]"
+      DTS:CreationName=""
+      DTS:DTSID="{D865DA1C-4962-486B-8812-DC9FF40999AC}"
+      DTS:ObjectName="SSIS_Config" />
+    <DTS:Configuration
+      DTS:ConfigurationString="&quot;SSIS Config&quot;;&quot;[dbo].[SSISConfigurations]&quot;;&quot;Amanda_OLEDB&quot;;"
+      DTS:ConfigurationType="7"
+      DTS:CreationName=""
+      DTS:DTSID="{3D5BE036-5AB4-4826-8C7B-AA57040AF7DA}"
+      DTS:ObjectName="AMANDA" />
+    <DTS:Configuration
+      DTS:ConfigurationString="&quot;SSIS Config&quot;;&quot;[dbo].[SSISConfigurations]&quot;;&quot;SSIS_Logging&quot;;"
+      DTS:ConfigurationType="7"
+      DTS:CreationName=""
+      DTS:DTSID="{95E37F8B-FE34-490B-BC58-F2D1EBBE51BD}"
+      DTS:ObjectName="SSIS_Logging" />
+    <DTS:Configuration
+      DTS:ConfigurationString="&quot;SSIS Config&quot;;&quot;[dbo].[SSISConfigurations]&quot;;&quot;BI_Data_Staging&quot;;"
+      DTS:ConfigurationType="7"
+      DTS:CreationName=""
+      DTS:DTSID="{7794612A-00F1-4707-BF6F-7C31D0732FAD}"
+      DTS:ObjectName="BI_DataStaging" />
+    <DTS:Configuration
+      DTS:ConfigurationString="&quot;SSIS Config&quot;;&quot;[dbo].[SSISConfigurations]&quot;;&quot;Tempest_OLEDB&quot;;"
+      DTS:ConfigurationType="7"
+      DTS:CreationName=""
+      DTS:DTSID="{4F9DAB04-2642-4DFE-934C-106C3F98FEBB}"
+      DTS:ObjectName="Tempest" />
+    <DTS:Configuration
+      DTS:ConfigurationString="&quot;SSIS Config&quot;;&quot;[dbo].[SSISConfigurations]&quot;;&quot;ReCollect_FTP&quot;;"
+      DTS:ConfigurationType="7"
+      DTS:CreationName=""
+      DTS:DTSID="{A4F5A69E-B0DE-4FE0-B29C-6EFB65FBB357}"
+      DTS:ObjectName="ReCollectFTP" />
+  </DTS:Configurations>
+  <DTS:LogProviders>
+    <DTS:LogProvider
+      DTS:ConfigString="SSIS Logging"
+      DTS:CreationName="Microsoft.LogProviderSQLServer"
+      DTS:Description="Writes log entries for events to a SQL Server database"
+      DTS:DTSID="{060CB9D8-FBF4-4BEA-B7D6-19B99BD554BE}"
+      DTS:ObjectName="SSIS log provider for SQL Server">
+      <DTS:ObjectData>
+        <InnerObject />
+      </DTS:ObjectData>
+    </DTS:LogProvider>
+  </DTS:LogProviders>
+  <DTS:Variables />
+  <DTS:LoggingOptions
+    DTS:FilterKind="0"
+    DTS:LoggingMode="1">
+    <DTS:Property
+      DTS:DataType="8"
+      DTS:Name="EventFilter">13,7,OnError,19,OnExecStatusChanged,13,OnInformation,13,OnPostExecute,14,OnPostValidate,12,OnPreExecute,13,OnPreValidate,10,OnProgress,13,OnQueryCancel,12,OnTaskFailed,22,OnVariableValueChanged,9,OnWarning,10,Diagnostic</DTS:Property>
+    <DTS:Property
+      DTS:EventName="Diagnostic"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnError"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnExecStatusChanged"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnInformation"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPostExecute"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPostValidate"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPreExecute"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPreValidate"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnProgress"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnQueryCancel"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnTaskFailed"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnVariableValueChanged"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnWarning"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:SelectedLogProviders>
+      <DTS:SelectedLogProvider
+        DTS:InstanceID="{060CB9D8-FBF4-4BEA-B7D6-19B99BD554BE}" />
+    </DTS:SelectedLogProviders>
+  </DTS:LoggingOptions>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Drop Indexes"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:Disabled="True"
+      DTS:DTSID="{b005c34d-6ff0-4289-8d97-cd2c0d302611}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Drop Indexes"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{B5C997A1-FCD5-4A42-BC3D-3F42A18DD2B7}"
+          SQLTask:SqlStatementSource="&lt;Enter your DROP INDEX statements here&gt;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Foreach Loop - Truncate or create target tables"
+      DTS:CreationName="STOCK:FOREACHLOOP"
+      DTS:Description="Foreach Loop Container"
+      DTS:DTSID="{0244643d-1cb9-4998-bcc6-d1ded1664346}"
+      DTS:ExecutableType="STOCK:FOREACHLOOP"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Foreach Loop - Truncate or create target tables">
+      <DTS:ForEachEnumerator
+        DTS:CreationName="Microsoft.ForEachItemEnumerator"
+        DTS:DTSID="{ffe2cea7-15a6-4990-84d6-9ce0f6b4dff9}"
+        DTS:ObjectName="{7335593A-CD9B-432C-9741-02823BC82FDD}">
+        <DTS:ObjectData>
+          <FEIEItems>
+            <FEIEItem>
+              <FEIEItemValue
+                Type="8"
+                Value="GarbageExtractStage" />
+              <FEIEItemValue
+                Type="8"
+                Value="CREATE TABLE [dbo].[GarbageExtractStage](&#xA;&#x9;[PROPERTYRSN] [varchar](10) NOT NULL,&#xA;&#x9;[PROPHOUSE] [varchar](20) NULL,&#xA;&#x9;[PROPSTREET] [varchar](40) NULL,&#xA;&#x9;[ZONE] [varchar](100) NULL&#xA;) ON [PRIMARY]&#xA;" />
+              <FEIEItemValue
+                Type="8"
+                Value="" />
+            </FEIEItem>
+            <FEIEItem>
+              <FEIEItemValue
+                Type="8"
+                Value="GarbageExtractFinal" />
+              <FEIEItemValue
+                Type="8"
+                Value="CREATE TABLE [dbo].[GarbageExtractFinal](&#xA;&#x9;[PROPHOUSE] [varchar](20) NOT NULL,&#xA;&#x9;[PROPSTREET] [varchar](40) NOT NULL,&#xA;&#x9;[ZONE] [varchar](100) NOT NULL&#xA;) ON [PRIMARY]&#xA;" />
+              <FEIEItemValue
+                Type="8"
+                Value="" />
+            </FEIEItem>
+          </FEIEItems>
+        </DTS:ObjectData>
+      </DTS:ForEachEnumerator>
+      <DTS:Variables>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:DTSID="{A686EDC6-7097-48D5-8329-99BC1161015E}"
+          DTS:IncludeInDebugDump="2345"
+          DTS:Namespace="User"
+          DTS:ObjectName="v_CreateIndexSQL">
+          <DTS:VariableValue
+            DTS:DataType="8"
+            xml:space="preserve"></DTS:VariableValue>
+        </DTS:Variable>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:DTSID="{f15db55f-9a23-43a9-92cf-d8e13573e48c}"
+          DTS:IncludeInDebugDump="2345"
+          DTS:Namespace="User"
+          DTS:ObjectName="v_CreateTableSQL">
+          <DTS:VariableValue
+            DTS:DataType="8"
+            xml:space="preserve"></DTS:VariableValue>
+        </DTS:Variable>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:DTSID="{da216681-426f-4fa4-a58f-de809f9fc5a5}"
+          DTS:IncludeInDebugDump="6789"
+          DTS:Namespace="User"
+          DTS:ObjectName="v_TableExistResult">
+          <DTS:VariableValue
+            DTS:DataType="3">0</DTS:VariableValue>
+        </DTS:Variable>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:DTSID="{f339376f-a60f-43fa-97c6-7a1ffb04864c}"
+          DTS:EvaluateAsExpression="True"
+          DTS:Expression="&quot;SELECT COUNT(*) CountOfTables FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = '&quot; +  @[User::v_TableName] + &quot;'&quot;"
+          DTS:IncludeInDebugDump="2345"
+          DTS:Namespace="User"
+          DTS:ObjectName="v_TableExistSQL">
+          <DTS:VariableValue
+            DTS:DataType="8">SELECT COUNT(*) CountOfTables FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = ''</DTS:VariableValue>
+        </DTS:Variable>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:DTSID="{b486a418-6002-47e3-a9b9-d6e1fcf8f196}"
+          DTS:IncludeInDebugDump="2345"
+          DTS:Namespace="User"
+          DTS:ObjectName="v_TableName">
+          <DTS:VariableValue
+            DTS:DataType="8"
+            xml:space="preserve"></DTS:VariableValue>
+        </DTS:Variable>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:DTSID="{ad2d2dad-a095-4b36-aaf0-8d4992356715}"
+          DTS:EvaluateAsExpression="True"
+          DTS:Expression="&quot;TRUNCATE TABLE dbo.&quot; + @[User::v_TableName] + &quot;;&quot;"
+          DTS:IncludeInDebugDump="2345"
+          DTS:Namespace="User"
+          DTS:ObjectName="v_TruncateTableSQL">
+          <DTS:VariableValue
+            DTS:DataType="8">TRUNCATE TABLE dbo.;</DTS:VariableValue>
+        </DTS:Variable>
+      </DTS:Variables>
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Foreach Loop - Truncate or create target tables\Create Indexes"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{31e3186c-5f39-4aaf-9d11-de8383fe120d}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Create Indexes"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{B5C997A1-FCD5-4A42-BC3D-3F42A18DD2B7}"
+              SQLTask:SqlStmtSourceType="Variable"
+              SQLTask:SqlStatementSource="User::v_CreateIndexSQL" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Foreach Loop - Truncate or create target tables\Create v_TableName"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{a80a4f94-b300-4d88-bc21-05667371a955}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Create v_TableName"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{B5C997A1-FCD5-4A42-BC3D-3F42A18DD2B7}"
+              SQLTask:SqlStmtSourceType="Variable"
+              SQLTask:SqlStatementSource="User::v_CreateTableSQL" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Foreach Loop - Truncate or create target tables\Set Variable"
+          DTS:CreationName="STOCK:SEQUENCE"
+          DTS:Description="Sequence Container"
+          DTS:DTSID="{01bf3de3-9d9b-4c5e-af36-36925ea331db}"
+          DTS:ExecutableType="STOCK:SEQUENCE"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Set Variable">
+          <DTS:Variables />
+          <DTS:Executables>
+            <DTS:Executable
+              DTS:refId="Package\Foreach Loop - Truncate or create target tables\Set Variable\Count if table exists"
+              DTS:CreationName="Microsoft.ExecuteSQLTask"
+              DTS:Description="Execute SQL Task"
+              DTS:DTSID="{70ee29d8-560f-4242-a988-648abfd7c246}"
+              DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="Count if table exists"
+              DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+              DTS:ThreadHint="0">
+              <DTS:Variables />
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{B5C997A1-FCD5-4A42-BC3D-3F42A18DD2B7}"
+                  SQLTask:SqlStmtSourceType="Variable"
+                  SQLTask:SqlStatementSource="User::v_TableExistSQL"
+                  SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+                  <SQLTask:ResultBinding
+                    SQLTask:ResultName="CountOfTables"
+                    SQLTask:DtsVariableName="User::v_TableExistResult" />
+                </SQLTask:SqlTaskData>
+              </DTS:ObjectData>
+            </DTS:Executable>
+          </DTS:Executables>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Foreach Loop - Truncate or create target tables\Truncate v_TableName"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{02468cc0-13b9-4a94-80e5-239fb72b37d1}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Truncate v_TableName"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{B5C997A1-FCD5-4A42-BC3D-3F42A18DD2B7}"
+              SQLTask:SqlStmtSourceType="Variable"
+              SQLTask:SqlStatementSource="User::v_TruncateTableSQL" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Foreach Loop - Truncate or create target tables.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{6944e1f2-7402-40fc-9443-8d807ff16ad1}"
+          DTS:EvalOp="3"
+          DTS:Expression="@[User::v_TableExistResult]==1"
+          DTS:From="Package\Foreach Loop - Truncate or create target tables\Set Variable"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Foreach Loop - Truncate or create target tables\Truncate v_TableName" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Foreach Loop - Truncate or create target tables.PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{bf1c0d90-370f-4487-9cc5-d26b2eee5289}"
+          DTS:EvalOp="3"
+          DTS:Expression="@[User::v_TableExistResult]==0"
+          DTS:From="Package\Foreach Loop - Truncate or create target tables\Set Variable"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package\Foreach Loop - Truncate or create target tables\Create v_TableName" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Foreach Loop - Truncate or create target tables.PrecedenceConstraints[Constraint 2]"
+          DTS:CreationName=""
+          DTS:DTSID="{6557819e-49e0-4bc3-8789-f842a5d609b4}"
+          DTS:From="Package\Foreach Loop - Truncate or create target tables\Create v_TableName"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 2"
+          DTS:To="Package\Foreach Loop - Truncate or create target tables\Create Indexes" />
+      </DTS:PrecedenceConstraints>
+      <DTS:ForEachVariableMappings>
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{E950F665-1111-4792-B32A-15C1956399AB}"
+          DTS:ObjectName="{E950F665-1111-4792-B32A-15C1956399AB}"
+          DTS:ValueIndex="0"
+          DTS:VariableName="User::v_TableName" />
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{C5335EB1-B0D7-482D-B52E-BB117A1DD189}"
+          DTS:ObjectName="{C5335EB1-B0D7-482D-B52E-BB117A1DD189}"
+          DTS:ValueIndex="1"
+          DTS:VariableName="User::v_CreateTableSQL" />
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{3D720947-78FA-42DC-9F20-BB7BB31841E5}"
+          DTS:ObjectName="{3D720947-78FA-42DC-9F20-BB7BB31841E5}"
+          DTS:ValueIndex="2"
+          DTS:VariableName="User::v_CreateIndexSQL" />
+      </DTS:ForEachVariableMappings>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Grant Permissions"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:Disabled="True"
+      DTS:DTSID="{fc2eefe8-9fdc-499d-a644-eedd334f2e42}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Grant Permissions"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{B5C997A1-FCD5-4A42-BC3D-3F42A18DD2B7}"
+          SQLTask:SqlStatementSource="&lt;Add and GRANT statements necessary&gt;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Recreate Indexes"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:Disabled="True"
+      DTS:DTSID="{06def32b-49b9-4a8e-8b9c-d51d3a4e3cd5}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Recreate Indexes"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{B5C997A1-FCD5-4A42-BC3D-3F42A18DD2B7}"
+          SQLTask:SqlStatementSource="&lt;Enter your CREATE INDEX statements here ... note, should be exactly the same as from the above CREATE INDEXES task&gt;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Sequence Container"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{0CC95275-7B88-4CB5-8879-08CE22566577}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Sequence Container">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Sequence Container\Data Flow Task - Staging"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:DelayValidation="True"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{2a764c91-a35c-44d9-806c-30e5c4b4f649}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Data Flow Task - Staging"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server v10; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              BLOBTempStoragePath=""
+              bufferTempStoragePath=""
+              version="1">
+              <components>
+                <component
+                  refId="Package\Sequence Container\Data Flow Task - Staging\AMANDA - Active Properties with Garbage Zone"
+                  componentClassID="Microsoft.OLEDBSource"
+                  contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+                  description="OLE DB Source"
+                  name="AMANDA - Active Properties with Garbage Zone"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset"></property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT 
+    a.propertyroll,  
+    a.propertyrsn,
+    a.prophouse, 
+    a.propstreet, 
+    DECODE(NVL(b.propinfovalue, 'No'), 'No', 'NOT ZONED', b.propinfovalue) propinfovalue
+FROM 
+    amanda.property a 
+    INNER JOIN amanda.propertyinfo b 
+        ON a.propertyrsn = b.propertyrsn
+WHERE 
+    a.statuscode = 1 AND 
+    b.propertyinfocode = 90 AND 
+    a.propertyroll IS NOT NULL AND 
+    a.prophouse IS NOT NULL AND 
+    a.propstreet IS NOT NULL 
+ORDER BY 1</property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">true</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">2</property>
+                    <property
+                      dataType="System.String"
+                      description="The mappings between the parameters in the SQL command and variables."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Sequence Container\Data Flow Task - Staging\AMANDA - Active Properties with Garbage Zone.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[Amanda]"
+                      connectionManagerRefId="Package.ConnectionManagers[Amanda]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Sequence Container\Data Flow Task - Staging\AMANDA - Active Properties with Garbage Zone.Outputs[OLE DB Source Output]"
+                      isSorted="true"
+                      name="OLE DB Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Sequence Container\Data Flow Task - Staging\AMANDA - Active Properties with Garbage Zone.Outputs[OLE DB Source Output].Columns[PROPERTYROLL]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Data Flow Task - Staging\AMANDA - Active Properties with Garbage Zone.Outputs[OLE DB Source Output].ExternalColumns[PROPERTYROLL]"
+                          length="50"
+                          lineageId="Package\Sequence Container\Data Flow Task - Staging\AMANDA - Active Properties with Garbage Zone.Outputs[OLE DB Source Output].Columns[PROPERTYROLL]"
+                          name="PROPERTYROLL"
+                          sortKeyPosition="1"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Data Flow Task - Staging\AMANDA - Active Properties with Garbage Zone.Outputs[OLE DB Source Output].Columns[PROPERTYRSN]"
+                          dataType="numeric"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Data Flow Task - Staging\AMANDA - Active Properties with Garbage Zone.Outputs[OLE DB Source Output].ExternalColumns[PROPERTYRSN]"
+                          lineageId="Package\Sequence Container\Data Flow Task - Staging\AMANDA - Active Properties with Garbage Zone.Outputs[OLE DB Source Output].Columns[PROPERTYRSN]"
+                          name="PROPERTYRSN"
+                          precision="10"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Data Flow Task - Staging\AMANDA - Active Properties with Garbage Zone.Outputs[OLE DB Source Output].Columns[PROPHOUSE]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Data Flow Task - Staging\AMANDA - Active Properties with Garbage Zone.Outputs[OLE DB Source Output].ExternalColumns[PROPHOUSE]"
+                          length="20"
+                          lineageId="Package\Sequence Container\Data Flow Task - Staging\AMANDA - Active Properties with Garbage Zone.Outputs[OLE DB Source Output].Columns[PROPHOUSE]"
+                          name="PROPHOUSE"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Data Flow Task - Staging\AMANDA - Active Properties with Garbage Zone.Outputs[OLE DB Source Output].Columns[PROPSTREET]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Data Flow Task - Staging\AMANDA - Active Properties with Garbage Zone.Outputs[OLE DB Source Output].ExternalColumns[PROPSTREET]"
+                          length="40"
+                          lineageId="Package\Sequence Container\Data Flow Task - Staging\AMANDA - Active Properties with Garbage Zone.Outputs[OLE DB Source Output].Columns[PROPSTREET]"
+                          name="PROPSTREET"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Data Flow Task - Staging\AMANDA - Active Properties with Garbage Zone.Outputs[OLE DB Source Output].Columns[PROPINFOVALUE]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Data Flow Task - Staging\AMANDA - Active Properties with Garbage Zone.Outputs[OLE DB Source Output].ExternalColumns[PROPINFOVALUE]"
+                          length="2000"
+                          lineageId="Package\Sequence Container\Data Flow Task - Staging\AMANDA - Active Properties with Garbage Zone.Outputs[OLE DB Source Output].Columns[PROPINFOVALUE]"
+                          name="PROPINFOVALUE"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Data Flow Task - Staging\AMANDA - Active Properties with Garbage Zone.Outputs[OLE DB Source Output].ExternalColumns[PROPERTYROLL]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="PROPERTYROLL" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Data Flow Task - Staging\AMANDA - Active Properties with Garbage Zone.Outputs[OLE DB Source Output].ExternalColumns[PROPERTYRSN]"
+                          dataType="numeric"
+                          name="PROPERTYRSN"
+                          precision="10" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Data Flow Task - Staging\AMANDA - Active Properties with Garbage Zone.Outputs[OLE DB Source Output].ExternalColumns[PROPHOUSE]"
+                          codePage="1252"
+                          dataType="str"
+                          length="20"
+                          name="PROPHOUSE" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Data Flow Task - Staging\AMANDA - Active Properties with Garbage Zone.Outputs[OLE DB Source Output].ExternalColumns[PROPSTREET]"
+                          codePage="1252"
+                          dataType="str"
+                          length="40"
+                          name="PROPSTREET" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Data Flow Task - Staging\AMANDA - Active Properties with Garbage Zone.Outputs[OLE DB Source Output].ExternalColumns[PROPINFOVALUE]"
+                          codePage="1252"
+                          dataType="str"
+                          length="2000"
+                          name="PROPINFOVALUE" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Sequence Container\Data Flow Task - Staging\AMANDA - Active Properties with Garbage Zone.Outputs[OLE DB Source Error Output]"
+                      isErrorOut="true"
+                      name="OLE DB Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Sequence Container\Data Flow Task - Staging\AMANDA - Active Properties with Garbage Zone.Outputs[OLE DB Source Error Output].Columns[PROPERTYROLL]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\Sequence Container\Data Flow Task - Staging\AMANDA - Active Properties with Garbage Zone.Outputs[OLE DB Source Error Output].Columns[PROPERTYROLL]"
+                          name="PROPERTYROLL" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Data Flow Task - Staging\AMANDA - Active Properties with Garbage Zone.Outputs[OLE DB Source Error Output].Columns[PROPERTYRSN]"
+                          dataType="numeric"
+                          lineageId="Package\Sequence Container\Data Flow Task - Staging\AMANDA - Active Properties with Garbage Zone.Outputs[OLE DB Source Error Output].Columns[PROPERTYRSN]"
+                          name="PROPERTYRSN"
+                          precision="10" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Data Flow Task - Staging\AMANDA - Active Properties with Garbage Zone.Outputs[OLE DB Source Error Output].Columns[PROPHOUSE]"
+                          codePage="1252"
+                          dataType="str"
+                          length="20"
+                          lineageId="Package\Sequence Container\Data Flow Task - Staging\AMANDA - Active Properties with Garbage Zone.Outputs[OLE DB Source Error Output].Columns[PROPHOUSE]"
+                          name="PROPHOUSE" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Data Flow Task - Staging\AMANDA - Active Properties with Garbage Zone.Outputs[OLE DB Source Error Output].Columns[PROPSTREET]"
+                          codePage="1252"
+                          dataType="str"
+                          length="40"
+                          lineageId="Package\Sequence Container\Data Flow Task - Staging\AMANDA - Active Properties with Garbage Zone.Outputs[OLE DB Source Error Output].Columns[PROPSTREET]"
+                          name="PROPSTREET" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Data Flow Task - Staging\AMANDA - Active Properties with Garbage Zone.Outputs[OLE DB Source Error Output].Columns[PROPINFOVALUE]"
+                          codePage="1252"
+                          dataType="str"
+                          length="2000"
+                          lineageId="Package\Sequence Container\Data Flow Task - Staging\AMANDA - Active Properties with Garbage Zone.Outputs[OLE DB Source Error Output].Columns[PROPINFOVALUE]"
+                          name="PROPINFOVALUE" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Data Flow Task - Staging\AMANDA - Active Properties with Garbage Zone.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container\Data Flow Task - Staging\AMANDA - Active Properties with Garbage Zone.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Data Flow Task - Staging\AMANDA - Active Properties with Garbage Zone.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container\Data Flow Task - Staging\AMANDA - Active Properties with Garbage Zone.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Sequence Container\Data Flow Task - Staging\BI Staging - GarbageExtractStage"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="BI Staging - GarbageExtractStage"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[dbo].[GarbageExtractStage]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">true</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Sequence Container\Data Flow Task - Staging\BI Staging - GarbageExtractStage.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[BI Data Staging]"
+                      connectionManagerRefId="Package.ConnectionManagers[BI Data Staging]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Sequence Container\Data Flow Task - Staging\BI Staging - GarbageExtractStage.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Sequence Container\Data Flow Task - Staging\BI Staging - GarbageExtractStage.Inputs[OLE DB Destination Input].Columns[PROPERTYRSN]"
+                          cachedDataType="numeric"
+                          cachedName="PROPERTYRSN"
+                          cachedPrecision="10"
+                          externalMetadataColumnId="Package\Sequence Container\Data Flow Task - Staging\BI Staging - GarbageExtractStage.Inputs[OLE DB Destination Input].ExternalColumns[PROPERTYRSN]"
+                          lineageId="Package\Sequence Container\Data Flow Task - Staging\Merge Join.Outputs[Merge Join Output].Columns[PROPERTYRSN]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Data Flow Task - Staging\BI Staging - GarbageExtractStage.Inputs[OLE DB Destination Input].Columns[PROPHOUSE]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="20"
+                          cachedName="PROPHOUSE"
+                          externalMetadataColumnId="Package\Sequence Container\Data Flow Task - Staging\BI Staging - GarbageExtractStage.Inputs[OLE DB Destination Input].ExternalColumns[PROPHOUSE]"
+                          lineageId="Package\Sequence Container\Data Flow Task - Staging\Merge Join.Outputs[Merge Join Output].Columns[PROPHOUSE]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Data Flow Task - Staging\BI Staging - GarbageExtractStage.Inputs[OLE DB Destination Input].Columns[PROPSTREET]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="40"
+                          cachedName="PROPSTREET"
+                          externalMetadataColumnId="Package\Sequence Container\Data Flow Task - Staging\BI Staging - GarbageExtractStage.Inputs[OLE DB Destination Input].ExternalColumns[PROPSTREET]"
+                          lineageId="Package\Sequence Container\Data Flow Task - Staging\Merge Join.Outputs[Merge Join Output].Columns[PROPSTREET]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Data Flow Task - Staging\BI Staging - GarbageExtractStage.Inputs[OLE DB Destination Input].Columns[ZONE]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="100"
+                          cachedName="ZONE"
+                          externalMetadataColumnId="Package\Sequence Container\Data Flow Task - Staging\BI Staging - GarbageExtractStage.Inputs[OLE DB Destination Input].ExternalColumns[ZONE]"
+                          lineageId="Package\Sequence Container\Data Flow Task - Staging\Derived Column.Outputs[Derived Column Output].Columns[ZONE]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Data Flow Task - Staging\BI Staging - GarbageExtractStage.Inputs[OLE DB Destination Input].ExternalColumns[PROPERTYRSN]"
+                          codePage="1252"
+                          dataType="str"
+                          length="10"
+                          name="PROPERTYRSN" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Data Flow Task - Staging\BI Staging - GarbageExtractStage.Inputs[OLE DB Destination Input].ExternalColumns[PROPHOUSE]"
+                          codePage="1252"
+                          dataType="str"
+                          length="20"
+                          name="PROPHOUSE" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Data Flow Task - Staging\BI Staging - GarbageExtractStage.Inputs[OLE DB Destination Input].ExternalColumns[PROPSTREET]"
+                          codePage="1252"
+                          dataType="str"
+                          length="40"
+                          name="PROPSTREET" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Data Flow Task - Staging\BI Staging - GarbageExtractStage.Inputs[OLE DB Destination Input].ExternalColumns[ZONE]"
+                          codePage="1252"
+                          dataType="str"
+                          length="100"
+                          name="ZONE" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Sequence Container\Data Flow Task - Staging\BI Staging - GarbageExtractStage.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\Sequence Container\Data Flow Task - Staging\BI Staging - GarbageExtractStage.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Sequence Container\Data Flow Task - Staging\BI Staging - GarbageExtractStage.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container\Data Flow Task - Staging\BI Staging - GarbageExtractStage.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Data Flow Task - Staging\BI Staging - GarbageExtractStage.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container\Data Flow Task - Staging\BI Staging - GarbageExtractStage.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Sequence Container\Data Flow Task - Staging\Derived Column"
+                  componentClassID="Microsoft.DerivedColumn"
+                  contactInfo="Derived Column;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Updates column values using expressions"
+                  name="Derived Column"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\Sequence Container\Data Flow Task - Staging\Derived Column.Inputs[Derived Column Input]"
+                      description="Input to the Derived Column Transformation"
+                      name="Derived Column Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Sequence Container\Data Flow Task - Staging\Derived Column.Inputs[Derived Column Input].Columns[GARBAGESERVICE]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="3"
+                          cachedName="GARBAGESERVICE"
+                          lineageId="Package\Sequence Container\Data Flow Task - Staging\Merge Join.Outputs[Merge Join Output].Columns[GARBAGESERVICE]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Data Flow Task - Staging\Derived Column.Inputs[Derived Column Input].Columns[PROPINFOVALUE]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="2000"
+                          cachedName="PROPINFOVALUE"
+                          lineageId="Package\Sequence Container\Data Flow Task - Staging\Merge Join.Outputs[Merge Join Output].Columns[PROPINFOVALUE]" />
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Sequence Container\Data Flow Task - Staging\Derived Column.Outputs[Derived Column Output]"
+                      description="Default Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      name="Derived Column Output"
+                      synchronousInputId="Package\Sequence Container\Data Flow Task - Staging\Derived Column.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Sequence Container\Data Flow Task - Staging\Derived Column.Outputs[Derived Column Output].Columns[ZONE]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          length="100"
+                          lineageId="Package\Sequence Container\Data Flow Task - Staging\Derived Column.Outputs[Derived Column Output].Columns[ZONE]"
+                          name="ZONE"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">(DT_STR,100,1252)(#{Package\Sequence Container\Data Flow Task - Staging\Merge Join.Outputs[Merge Join Output].Columns[GARBAGESERVICE]} == "YES" ? #{Package\Sequence Container\Data Flow Task - Staging\Merge Join.Outputs[Merge Join Output].Columns[PROPINFOVALUE]} : "_NO SERVICE")</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">(DT_STR,100,1252)(GARBAGESERVICE == "YES" ? PROPINFOVALUE : "_NO SERVICE")</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Sequence Container\Data Flow Task - Staging\Derived Column.Outputs[Derived Column Error Output]"
+                      description="Error Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Derived Column Error Output"
+                      synchronousInputId="Package\Sequence Container\Data Flow Task - Staging\Derived Column.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Sequence Container\Data Flow Task - Staging\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container\Data Flow Task - Staging\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Data Flow Task - Staging\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container\Data Flow Task - Staging\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Sequence Container\Data Flow Task - Staging\Merge Join"
+                  componentClassID="Microsoft.MergeJoin"
+                  contactInfo="Merge Join;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+                  description="Merges data from two datasets by using a join."
+                  name="Merge Join"
+                  version="1">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the type of join to perform."
+                      name="JoinType"
+                      typeConverter="JoinType">2</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the number of columns in the ordering key."
+                      name="NumKeyColumns">1</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the null values are treated as equal values."
+                      name="TreatNullsAsEqual">true</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Indicates the requested maximum buffers per input before blocking."
+                      name="MaxBuffersPerInput">5</property>
+                  </properties>
+                  <inputs>
+                    <input
+                      refId="Package\Sequence Container\Data Flow Task - Staging\Merge Join.Inputs[Merge Join Left Input]"
+                      hasSideEffects="true"
+                      name="Merge Join Left Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Sequence Container\Data Flow Task - Staging\Merge Join.Inputs[Merge Join Left Input].Columns[folio]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="16"
+                          cachedName="folio"
+                          cachedSortKeyPosition="1"
+                          lineageId="Package\Sequence Container\Data Flow Task - Staging\Tempest - Folio and GarbageService.Outputs[OLE DB Source Output].Columns[folio]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Data Flow Task - Staging\Merge Join.Inputs[Merge Join Left Input].Columns[GarbageService]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="3"
+                          cachedName="GarbageService"
+                          lineageId="Package\Sequence Container\Data Flow Task - Staging\Tempest - Folio and GarbageService.Outputs[OLE DB Source Output].Columns[GarbageService]" />
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                    <input
+                      refId="Package\Sequence Container\Data Flow Task - Staging\Merge Join.Inputs[Merge Join Right Input]"
+                      hasSideEffects="true"
+                      name="Merge Join Right Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Sequence Container\Data Flow Task - Staging\Merge Join.Inputs[Merge Join Right Input].Columns[PROPERTYROLL]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="PROPERTYROLL"
+                          cachedSortKeyPosition="1"
+                          lineageId="Package\Sequence Container\Data Flow Task - Staging\AMANDA - Active Properties with Garbage Zone.Outputs[OLE DB Source Output].Columns[PROPERTYROLL]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Data Flow Task - Staging\Merge Join.Inputs[Merge Join Right Input].Columns[PROPERTYRSN]"
+                          cachedDataType="numeric"
+                          cachedName="PROPERTYRSN"
+                          cachedPrecision="10"
+                          lineageId="Package\Sequence Container\Data Flow Task - Staging\AMANDA - Active Properties with Garbage Zone.Outputs[OLE DB Source Output].Columns[PROPERTYRSN]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Data Flow Task - Staging\Merge Join.Inputs[Merge Join Right Input].Columns[PROPHOUSE]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="20"
+                          cachedName="PROPHOUSE"
+                          lineageId="Package\Sequence Container\Data Flow Task - Staging\AMANDA - Active Properties with Garbage Zone.Outputs[OLE DB Source Output].Columns[PROPHOUSE]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Data Flow Task - Staging\Merge Join.Inputs[Merge Join Right Input].Columns[PROPSTREET]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="40"
+                          cachedName="PROPSTREET"
+                          lineageId="Package\Sequence Container\Data Flow Task - Staging\AMANDA - Active Properties with Garbage Zone.Outputs[OLE DB Source Output].Columns[PROPSTREET]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Data Flow Task - Staging\Merge Join.Inputs[Merge Join Right Input].Columns[PROPINFOVALUE]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="2000"
+                          cachedName="PROPINFOVALUE"
+                          lineageId="Package\Sequence Container\Data Flow Task - Staging\AMANDA - Active Properties with Garbage Zone.Outputs[OLE DB Source Output].Columns[PROPINFOVALUE]" />
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Sequence Container\Data Flow Task - Staging\Merge Join.Outputs[Merge Join Output]"
+                      isSorted="true"
+                      name="Merge Join Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Sequence Container\Data Flow Task - Staging\Merge Join.Outputs[Merge Join Output].Columns[FOLIO]"
+                          codePage="1252"
+                          dataType="str"
+                          length="16"
+                          lineageId="Package\Sequence Container\Data Flow Task - Staging\Merge Join.Outputs[Merge Join Output].Columns[FOLIO]"
+                          name="FOLIO"
+                          sortKeyPosition="1">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="The input column associated with this output column"
+                              name="InputColumnID">#{Package\Sequence Container\Data Flow Task - Staging\Merge Join.Inputs[Merge Join Left Input].Columns[folio]}</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Sequence Container\Data Flow Task - Staging\Merge Join.Outputs[Merge Join Output].Columns[GARBAGESERVICE]"
+                          codePage="1252"
+                          dataType="str"
+                          length="3"
+                          lineageId="Package\Sequence Container\Data Flow Task - Staging\Merge Join.Outputs[Merge Join Output].Columns[GARBAGESERVICE]"
+                          name="GARBAGESERVICE">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="The input column associated with this output column"
+                              name="InputColumnID">#{Package\Sequence Container\Data Flow Task - Staging\Merge Join.Inputs[Merge Join Left Input].Columns[GarbageService]}</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Sequence Container\Data Flow Task - Staging\Merge Join.Outputs[Merge Join Output].Columns[PROPERTYRSN]"
+                          dataType="numeric"
+                          lineageId="Package\Sequence Container\Data Flow Task - Staging\Merge Join.Outputs[Merge Join Output].Columns[PROPERTYRSN]"
+                          name="PROPERTYRSN"
+                          precision="10">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="The input column associated with this output column"
+                              name="InputColumnID">#{Package\Sequence Container\Data Flow Task - Staging\Merge Join.Inputs[Merge Join Right Input].Columns[PROPERTYRSN]}</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Sequence Container\Data Flow Task - Staging\Merge Join.Outputs[Merge Join Output].Columns[PROPHOUSE]"
+                          codePage="1252"
+                          dataType="str"
+                          length="20"
+                          lineageId="Package\Sequence Container\Data Flow Task - Staging\Merge Join.Outputs[Merge Join Output].Columns[PROPHOUSE]"
+                          name="PROPHOUSE">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="The input column associated with this output column"
+                              name="InputColumnID">#{Package\Sequence Container\Data Flow Task - Staging\Merge Join.Inputs[Merge Join Right Input].Columns[PROPHOUSE]}</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Sequence Container\Data Flow Task - Staging\Merge Join.Outputs[Merge Join Output].Columns[PROPSTREET]"
+                          codePage="1252"
+                          dataType="str"
+                          length="40"
+                          lineageId="Package\Sequence Container\Data Flow Task - Staging\Merge Join.Outputs[Merge Join Output].Columns[PROPSTREET]"
+                          name="PROPSTREET">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="The input column associated with this output column"
+                              name="InputColumnID">#{Package\Sequence Container\Data Flow Task - Staging\Merge Join.Inputs[Merge Join Right Input].Columns[PROPSTREET]}</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Sequence Container\Data Flow Task - Staging\Merge Join.Outputs[Merge Join Output].Columns[PROPINFOVALUE]"
+                          codePage="1252"
+                          dataType="str"
+                          length="2000"
+                          lineageId="Package\Sequence Container\Data Flow Task - Staging\Merge Join.Outputs[Merge Join Output].Columns[PROPINFOVALUE]"
+                          name="PROPINFOVALUE">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="The input column associated with this output column"
+                              name="InputColumnID">#{Package\Sequence Container\Data Flow Task - Staging\Merge Join.Inputs[Merge Join Right Input].Columns[PROPINFOVALUE]}</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Sequence Container\Data Flow Task - Staging\Tempest - Folio and GarbageService"
+                  componentClassID="Microsoft.OLEDBSource"
+                  contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+                  description="OLE DB Source"
+                  name="Tempest - Folio and GarbageService"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset"></property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT  DISTINCT
+    a.folio, (CASE WHEN d.service_charge IS NULL THEN 'YES' ELSE 'NO' END) GarbageService 
+FROM land_legal a LEFT OUTER JOIN 
+    (SELECT b.legal_id, c.service_charge 
+        FROM land_relation b INNER JOIN ub_services c
+            ON b.relation_id = c.customer_id AND 
+                b.type = 'UTILITY' AND 
+                (b.end_date IS NULL OR GETDATE() BETWEEN b.begin_date AND b.end_date) AND 
+                c.service_charge LIKE '%GARBAGE%' AND 
+                (c.stop_date IS NULL OR GETDATE() BETWEEN c.start_date AND c.stop_date)
+    ) d ON a.legal_id = d.legal_id 
+WHERE 
+    a.deleted_date IS NULL AND 
+    a.folio IS NOT NULL
+ORDER BY a.folio</property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">true</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">2</property>
+                    <property
+                      dataType="System.String"
+                      description="The mappings between the parameters in the SQL command and variables."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Sequence Container\Data Flow Task - Staging\Tempest - Folio and GarbageService.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[Tempest]"
+                      connectionManagerRefId="Package.ConnectionManagers[Tempest]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Sequence Container\Data Flow Task - Staging\Tempest - Folio and GarbageService.Outputs[OLE DB Source Output]"
+                      isSorted="true"
+                      name="OLE DB Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Sequence Container\Data Flow Task - Staging\Tempest - Folio and GarbageService.Outputs[OLE DB Source Output].Columns[folio]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Data Flow Task - Staging\Tempest - Folio and GarbageService.Outputs[OLE DB Source Output].ExternalColumns[folio]"
+                          length="16"
+                          lineageId="Package\Sequence Container\Data Flow Task - Staging\Tempest - Folio and GarbageService.Outputs[OLE DB Source Output].Columns[folio]"
+                          name="folio"
+                          sortKeyPosition="1"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Data Flow Task - Staging\Tempest - Folio and GarbageService.Outputs[OLE DB Source Output].Columns[GarbageService]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Data Flow Task - Staging\Tempest - Folio and GarbageService.Outputs[OLE DB Source Output].ExternalColumns[GarbageService]"
+                          length="3"
+                          lineageId="Package\Sequence Container\Data Flow Task - Staging\Tempest - Folio and GarbageService.Outputs[OLE DB Source Output].Columns[GarbageService]"
+                          name="GarbageService"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Data Flow Task - Staging\Tempest - Folio and GarbageService.Outputs[OLE DB Source Output].ExternalColumns[folio]"
+                          codePage="1252"
+                          dataType="str"
+                          length="16"
+                          name="folio" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Data Flow Task - Staging\Tempest - Folio and GarbageService.Outputs[OLE DB Source Output].ExternalColumns[GarbageService]"
+                          codePage="1252"
+                          dataType="str"
+                          length="3"
+                          name="GarbageService" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Sequence Container\Data Flow Task - Staging\Tempest - Folio and GarbageService.Outputs[OLE DB Source Error Output]"
+                      isErrorOut="true"
+                      name="OLE DB Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Sequence Container\Data Flow Task - Staging\Tempest - Folio and GarbageService.Outputs[OLE DB Source Error Output].Columns[folio]"
+                          codePage="1252"
+                          dataType="str"
+                          length="16"
+                          lineageId="Package\Sequence Container\Data Flow Task - Staging\Tempest - Folio and GarbageService.Outputs[OLE DB Source Error Output].Columns[folio]"
+                          name="folio" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Data Flow Task - Staging\Tempest - Folio and GarbageService.Outputs[OLE DB Source Error Output].Columns[GarbageService]"
+                          codePage="1252"
+                          dataType="str"
+                          length="3"
+                          lineageId="Package\Sequence Container\Data Flow Task - Staging\Tempest - Folio and GarbageService.Outputs[OLE DB Source Error Output].Columns[GarbageService]"
+                          name="GarbageService" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Data Flow Task - Staging\Tempest - Folio and GarbageService.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container\Data Flow Task - Staging\Tempest - Folio and GarbageService.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Data Flow Task - Staging\Tempest - Folio and GarbageService.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container\Data Flow Task - Staging\Tempest - Folio and GarbageService.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Sequence Container\Data Flow Task - Staging.Paths[Derived Column Output]"
+                  endId="Package\Sequence Container\Data Flow Task - Staging\BI Staging - GarbageExtractStage.Inputs[OLE DB Destination Input]"
+                  name="Derived Column Output"
+                  startId="Package\Sequence Container\Data Flow Task - Staging\Derived Column.Outputs[Derived Column Output]" />
+                <path
+                  refId="Package\Sequence Container\Data Flow Task - Staging.Paths[Merge Join Output]"
+                  endId="Package\Sequence Container\Data Flow Task - Staging\Derived Column.Inputs[Derived Column Input]"
+                  name="Merge Join Output"
+                  startId="Package\Sequence Container\Data Flow Task - Staging\Merge Join.Outputs[Merge Join Output]" />
+                <path
+                  refId="Package\Sequence Container\Data Flow Task - Staging.Paths[OLE DB Source Output]"
+                  endId="Package\Sequence Container\Data Flow Task - Staging\Merge Join.Inputs[Merge Join Left Input]"
+                  name="OLE DB Source Output"
+                  startId="Package\Sequence Container\Data Flow Task - Staging\Tempest - Folio and GarbageService.Outputs[OLE DB Source Output]" />
+                <path
+                  refId="Package\Sequence Container\Data Flow Task - Staging.Paths[OLE DB Source Output1]"
+                  endId="Package\Sequence Container\Data Flow Task - Staging\Merge Join.Inputs[Merge Join Right Input]"
+                  name="OLE DB Source Output"
+                  startId="Package\Sequence Container\Data Flow Task - Staging\AMANDA - Active Properties with Garbage Zone.Outputs[OLE DB Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Sequence Container 1"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{C2055DCB-627D-4DC6-AA2B-B276668A1803}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Sequence Container 1">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Sequence Container 1\Data Flow Task - Final"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:DelayValidation="True"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{D8D799E2-ED3A-42C1-8561-C36A051B95E8}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Data Flow Task - Final"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server v10; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              BLOBTempStoragePath=""
+              bufferTempStoragePath=""
+              version="1">
+              <components>
+                <component
+                  refId="Package\Sequence Container 1\Data Flow Task - Final\Derived Column"
+                  componentClassID="Microsoft.DerivedColumn"
+                  contactInfo="Derived Column;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Updates column values using expressions"
+                  name="Derived Column"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\Sequence Container 1\Data Flow Task - Final\Derived Column.Inputs[Derived Column Input]"
+                      description="Input to the Derived Column Transformation"
+                      name="Derived Column Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Sequence Container 1\Data Flow Task - Final\Derived Column.Inputs[Derived Column Input].Columns[ZONE]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="100"
+                          cachedName="ZONE"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          lineageId="Package\Sequence Container 1\Data Flow Task - Final\GarbageExtractStage.Outputs[OLE DB Source Output].Columns[ZONE]"
+                          truncationRowDisposition="FailComponent"
+                          usageType="readWrite">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">(DT_STR,100,1252)(#{Package\Sequence Container 1\Data Flow Task - Final\GarbageExtractStage.Outputs[OLE DB Source Output].Columns[ZONE]} == "_NO SERVICE" ? "NO SERVICE" : #{Package\Sequence Container 1\Data Flow Task - Final\GarbageExtractStage.Outputs[OLE DB Source Output].Columns[ZONE]})</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">(DT_STR,100,1252)(ZONE == "_NO SERVICE" ? "NO SERVICE" : ZONE)</property>
+                          </properties>
+                        </inputColumn>
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Sequence Container 1\Data Flow Task - Final\Derived Column.Outputs[Derived Column Output]"
+                      description="Default Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      name="Derived Column Output"
+                      synchronousInputId="Package\Sequence Container 1\Data Flow Task - Final\Derived Column.Inputs[Derived Column Input]">
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Sequence Container 1\Data Flow Task - Final\Derived Column.Outputs[Derived Column Error Output]"
+                      description="Error Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Derived Column Error Output"
+                      synchronousInputId="Package\Sequence Container 1\Data Flow Task - Final\Derived Column.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Sequence Container 1\Data Flow Task - Final\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container 1\Data Flow Task - Final\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Sequence Container 1\Data Flow Task - Final\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container 1\Data Flow Task - Final\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Sequence Container 1\Data Flow Task - Final\GarbageExtractFinal"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="GarbageExtractFinal"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[dbo].[GarbageExtractFinal]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Sequence Container 1\Data Flow Task - Final\GarbageExtractFinal.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[BI Data Staging]"
+                      connectionManagerRefId="Package.ConnectionManagers[BI Data Staging]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Sequence Container 1\Data Flow Task - Final\GarbageExtractFinal.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Sequence Container 1\Data Flow Task - Final\GarbageExtractFinal.Inputs[OLE DB Destination Input].Columns[PROPHOUSE]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="20"
+                          cachedName="PROPHOUSE"
+                          externalMetadataColumnId="Package\Sequence Container 1\Data Flow Task - Final\GarbageExtractFinal.Inputs[OLE DB Destination Input].ExternalColumns[PROPHOUSE]"
+                          lineageId="Package\Sequence Container 1\Data Flow Task - Final\GarbageExtractStage.Outputs[OLE DB Source Output].Columns[PROPHOUSE]" />
+                        <inputColumn
+                          refId="Package\Sequence Container 1\Data Flow Task - Final\GarbageExtractFinal.Inputs[OLE DB Destination Input].Columns[PROPSTREET]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="40"
+                          cachedName="PROPSTREET"
+                          externalMetadataColumnId="Package\Sequence Container 1\Data Flow Task - Final\GarbageExtractFinal.Inputs[OLE DB Destination Input].ExternalColumns[PROPSTREET]"
+                          lineageId="Package\Sequence Container 1\Data Flow Task - Final\GarbageExtractStage.Outputs[OLE DB Source Output].Columns[PROPSTREET]" />
+                        <inputColumn
+                          refId="Package\Sequence Container 1\Data Flow Task - Final\GarbageExtractFinal.Inputs[OLE DB Destination Input].Columns[ZONE]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="100"
+                          cachedName="ZONE"
+                          externalMetadataColumnId="Package\Sequence Container 1\Data Flow Task - Final\GarbageExtractFinal.Inputs[OLE DB Destination Input].ExternalColumns[ZONE]"
+                          lineageId="Package\Sequence Container 1\Data Flow Task - Final\GarbageExtractStage.Outputs[OLE DB Source Output].Columns[ZONE]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container 1\Data Flow Task - Final\GarbageExtractFinal.Inputs[OLE DB Destination Input].ExternalColumns[PROPHOUSE]"
+                          codePage="1252"
+                          dataType="str"
+                          length="20"
+                          name="PROPHOUSE" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container 1\Data Flow Task - Final\GarbageExtractFinal.Inputs[OLE DB Destination Input].ExternalColumns[PROPSTREET]"
+                          codePage="1252"
+                          dataType="str"
+                          length="40"
+                          name="PROPSTREET" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container 1\Data Flow Task - Final\GarbageExtractFinal.Inputs[OLE DB Destination Input].ExternalColumns[ZONE]"
+                          codePage="1252"
+                          dataType="str"
+                          length="100"
+                          name="ZONE" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Sequence Container 1\Data Flow Task - Final\GarbageExtractFinal.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\Sequence Container 1\Data Flow Task - Final\GarbageExtractFinal.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Sequence Container 1\Data Flow Task - Final\GarbageExtractFinal.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container 1\Data Flow Task - Final\GarbageExtractFinal.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Sequence Container 1\Data Flow Task - Final\GarbageExtractFinal.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container 1\Data Flow Task - Final\GarbageExtractFinal.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Sequence Container 1\Data Flow Task - Final\GarbageExtractStage"
+                  componentClassID="Microsoft.OLEDBSource"
+                  contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+                  description="OLE DB Source"
+                  name="GarbageExtractStage"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset"></property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT 
+	PROPHOUSE, 
+	PROPSTREET, 
+	MAX([ZONE]) ZONE
+FROM 
+	dbo.GarbageExtractStage
+GROUP BY 
+	PROPHOUSE, 
+	PROPSTREET</property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">2</property>
+                    <property
+                      dataType="System.String"
+                      description="The mappings between the parameters in the SQL command and variables."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Sequence Container 1\Data Flow Task - Final\GarbageExtractStage.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[BI Data Staging]"
+                      connectionManagerRefId="Package.ConnectionManagers[BI Data Staging]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Sequence Container 1\Data Flow Task - Final\GarbageExtractStage.Outputs[OLE DB Source Output]"
+                      name="OLE DB Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Sequence Container 1\Data Flow Task - Final\GarbageExtractStage.Outputs[OLE DB Source Output].Columns[PROPHOUSE]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container 1\Data Flow Task - Final\GarbageExtractStage.Outputs[OLE DB Source Output].ExternalColumns[PROPHOUSE]"
+                          length="20"
+                          lineageId="Package\Sequence Container 1\Data Flow Task - Final\GarbageExtractStage.Outputs[OLE DB Source Output].Columns[PROPHOUSE]"
+                          name="PROPHOUSE"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container 1\Data Flow Task - Final\GarbageExtractStage.Outputs[OLE DB Source Output].Columns[PROPSTREET]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container 1\Data Flow Task - Final\GarbageExtractStage.Outputs[OLE DB Source Output].ExternalColumns[PROPSTREET]"
+                          length="40"
+                          lineageId="Package\Sequence Container 1\Data Flow Task - Final\GarbageExtractStage.Outputs[OLE DB Source Output].Columns[PROPSTREET]"
+                          name="PROPSTREET"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container 1\Data Flow Task - Final\GarbageExtractStage.Outputs[OLE DB Source Output].Columns[ZONE]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container 1\Data Flow Task - Final\GarbageExtractStage.Outputs[OLE DB Source Output].ExternalColumns[ZONE]"
+                          length="100"
+                          lineageId="Package\Sequence Container 1\Data Flow Task - Final\GarbageExtractStage.Outputs[OLE DB Source Output].Columns[ZONE]"
+                          name="ZONE"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container 1\Data Flow Task - Final\GarbageExtractStage.Outputs[OLE DB Source Output].ExternalColumns[PROPHOUSE]"
+                          codePage="1252"
+                          dataType="str"
+                          length="20"
+                          name="PROPHOUSE" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container 1\Data Flow Task - Final\GarbageExtractStage.Outputs[OLE DB Source Output].ExternalColumns[PROPSTREET]"
+                          codePage="1252"
+                          dataType="str"
+                          length="40"
+                          name="PROPSTREET" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container 1\Data Flow Task - Final\GarbageExtractStage.Outputs[OLE DB Source Output].ExternalColumns[ZONE]"
+                          codePage="1252"
+                          dataType="str"
+                          length="100"
+                          name="ZONE" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Sequence Container 1\Data Flow Task - Final\GarbageExtractStage.Outputs[OLE DB Source Error Output]"
+                      isErrorOut="true"
+                      name="OLE DB Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Sequence Container 1\Data Flow Task - Final\GarbageExtractStage.Outputs[OLE DB Source Error Output].Columns[PROPHOUSE]"
+                          codePage="1252"
+                          dataType="str"
+                          length="20"
+                          lineageId="Package\Sequence Container 1\Data Flow Task - Final\GarbageExtractStage.Outputs[OLE DB Source Error Output].Columns[PROPHOUSE]"
+                          name="PROPHOUSE" />
+                        <outputColumn
+                          refId="Package\Sequence Container 1\Data Flow Task - Final\GarbageExtractStage.Outputs[OLE DB Source Error Output].Columns[PROPSTREET]"
+                          codePage="1252"
+                          dataType="str"
+                          length="40"
+                          lineageId="Package\Sequence Container 1\Data Flow Task - Final\GarbageExtractStage.Outputs[OLE DB Source Error Output].Columns[PROPSTREET]"
+                          name="PROPSTREET" />
+                        <outputColumn
+                          refId="Package\Sequence Container 1\Data Flow Task - Final\GarbageExtractStage.Outputs[OLE DB Source Error Output].Columns[ZONE]"
+                          codePage="1252"
+                          dataType="str"
+                          length="100"
+                          lineageId="Package\Sequence Container 1\Data Flow Task - Final\GarbageExtractStage.Outputs[OLE DB Source Error Output].Columns[ZONE]"
+                          name="ZONE" />
+                        <outputColumn
+                          refId="Package\Sequence Container 1\Data Flow Task - Final\GarbageExtractStage.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container 1\Data Flow Task - Final\GarbageExtractStage.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Sequence Container 1\Data Flow Task - Final\GarbageExtractStage.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container 1\Data Flow Task - Final\GarbageExtractStage.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Sequence Container 1\Data Flow Task - Final.Paths[Derived Column Output]"
+                  endId="Package\Sequence Container 1\Data Flow Task - Final\GarbageExtractFinal.Inputs[OLE DB Destination Input]"
+                  name="Derived Column Output"
+                  startId="Package\Sequence Container 1\Data Flow Task - Final\Derived Column.Outputs[Derived Column Output]" />
+                <path
+                  refId="Package\Sequence Container 1\Data Flow Task - Final.Paths[OLE DB Source Output]"
+                  endId="Package\Sequence Container 1\Data Flow Task - Final\Derived Column.Inputs[Derived Column Input]"
+                  name="OLE DB Source Output"
+                  startId="Package\Sequence Container 1\Data Flow Task - Final\GarbageExtractStage.Outputs[OLE DB Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Sequence Container 2"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{39026592-FA11-40BF-BD6A-EB1710967166}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Sequence Container 2">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Sequence Container 2\Data Flow Task"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:DelayValidation="True"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{BB15AC2F-7017-47C0-9D23-00A49F0873D0}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Data Flow Task"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server v10; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              BLOBTempStoragePath=""
+              bufferTempStoragePath=""
+              version="1">
+              <components>
+                <component
+                  refId="Package\Sequence Container 2\Data Flow Task\Flat File Destination - ReCollect"
+                  componentClassID="Microsoft.FlatFileDestination"
+                  contactInfo="Flat File Destination;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Flat File Destination"
+                  localeId="1033"
+                  name="Flat File Destination - ReCollect"
+                  version="1">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      description="Specifies whether the data will overwrite or append to the destination file."
+                      name="Overwrite">true</property>
+                    <property
+                      dataType="System.Null"
+                      description="Specifies the text to write to the destination file before any data is written."
+                      expressionType="Notify"
+                      name="Header" />
+                    <property
+                      dataType="System.Boolean"
+                      description="When text qualifier is enabled, specifies whether the text qualifier in the data written to the destination file will be escaped or not."
+                      name="EscapeQualifier">false</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Sequence Container 2\Data Flow Task\Flat File Destination - ReCollect.Connections[FlatFileConnection]"
+                      connectionManagerID="Package.ConnectionManagers[Flat File Connection Manager - ReCollect]"
+                      connectionManagerRefId="Package.ConnectionManagers[Flat File Connection Manager - ReCollect]"
+                      name="FlatFileConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Sequence Container 2\Data Flow Task\Flat File Destination - ReCollect.Inputs[Flat File Destination Input]"
+                      hasSideEffects="true"
+                      name="Flat File Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Sequence Container 2\Data Flow Task\Flat File Destination - ReCollect.Inputs[Flat File Destination Input].Columns[HOUSE]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="20"
+                          cachedName="HOUSE"
+                          externalMetadataColumnId="Package\Sequence Container 2\Data Flow Task\Flat File Destination - ReCollect.Inputs[Flat File Destination Input].ExternalColumns[HOUSE]"
+                          lineageId="Package\Sequence Container 2\Data Flow Task\GarbageExtractFinal.Outputs[OLE DB Source Output].Columns[HOUSE]" />
+                        <inputColumn
+                          refId="Package\Sequence Container 2\Data Flow Task\Flat File Destination - ReCollect.Inputs[Flat File Destination Input].Columns[FULL_STREET_NAME]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="40"
+                          cachedName="FULL_STREET_NAME"
+                          externalMetadataColumnId="Package\Sequence Container 2\Data Flow Task\Flat File Destination - ReCollect.Inputs[Flat File Destination Input].ExternalColumns[FULL_STREET_NAME]"
+                          lineageId="Package\Sequence Container 2\Data Flow Task\GarbageExtractFinal.Outputs[OLE DB Source Output].Columns[FULL_STREET_NAME]" />
+                        <inputColumn
+                          refId="Package\Sequence Container 2\Data Flow Task\Flat File Destination - ReCollect.Inputs[Flat File Destination Input].Columns[CITY]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="10"
+                          cachedName="CITY"
+                          externalMetadataColumnId="Package\Sequence Container 2\Data Flow Task\Flat File Destination - ReCollect.Inputs[Flat File Destination Input].ExternalColumns[CITY]"
+                          lineageId="Package\Sequence Container 2\Data Flow Task\GarbageExtractFinal.Outputs[OLE DB Source Output].Columns[CITY]" />
+                        <inputColumn
+                          refId="Package\Sequence Container 2\Data Flow Task\Flat File Destination - ReCollect.Inputs[Flat File Destination Input].Columns[ZONE]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="100"
+                          cachedName="ZONE"
+                          externalMetadataColumnId="Package\Sequence Container 2\Data Flow Task\Flat File Destination - ReCollect.Inputs[Flat File Destination Input].ExternalColumns[ZONE]"
+                          lineageId="Package\Sequence Container 2\Data Flow Task\GarbageExtractFinal.Outputs[OLE DB Source Output].Columns[ZONE]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container 2\Data Flow Task\Flat File Destination - ReCollect.Inputs[Flat File Destination Input].ExternalColumns[HOUSE]"
+                          codePage="1252"
+                          dataType="str"
+                          length="20"
+                          name="HOUSE" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container 2\Data Flow Task\Flat File Destination - ReCollect.Inputs[Flat File Destination Input].ExternalColumns[FULL_STREET_NAME]"
+                          codePage="1252"
+                          dataType="str"
+                          length="40"
+                          name="FULL_STREET_NAME" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container 2\Data Flow Task\Flat File Destination - ReCollect.Inputs[Flat File Destination Input].ExternalColumns[CITY]"
+                          codePage="1252"
+                          dataType="str"
+                          length="10"
+                          name="CITY" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container 2\Data Flow Task\Flat File Destination - ReCollect.Inputs[Flat File Destination Input].ExternalColumns[ZONE]"
+                          codePage="1252"
+                          dataType="str"
+                          length="100"
+                          name="ZONE" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                </component>
+                <component
+                  refId="Package\Sequence Container 2\Data Flow Task\GarbageExtractFinal"
+                  componentClassID="Microsoft.OLEDBSource"
+                  contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+                  description="OLE DB Source"
+                  name="GarbageExtractFinal"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset"></property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT 
+  PROPHOUSE HOUSE, 
+  PROPSTREET FULL_STREET_NAME, 
+  'Abbotsford' CITY, 
+  ZONE
+FROM 
+  dbo.GarbageExtractFinal 
+ORDER BY 2, 1</property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">2</property>
+                    <property
+                      dataType="System.String"
+                      description="The mappings between the parameters in the SQL command and variables."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Sequence Container 2\Data Flow Task\GarbageExtractFinal.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[BI Data Staging]"
+                      connectionManagerRefId="Package.ConnectionManagers[BI Data Staging]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Sequence Container 2\Data Flow Task\GarbageExtractFinal.Outputs[OLE DB Source Output]"
+                      name="OLE DB Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Sequence Container 2\Data Flow Task\GarbageExtractFinal.Outputs[OLE DB Source Output].Columns[HOUSE]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container 2\Data Flow Task\GarbageExtractFinal.Outputs[OLE DB Source Output].ExternalColumns[HOUSE]"
+                          length="20"
+                          lineageId="Package\Sequence Container 2\Data Flow Task\GarbageExtractFinal.Outputs[OLE DB Source Output].Columns[HOUSE]"
+                          name="HOUSE"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container 2\Data Flow Task\GarbageExtractFinal.Outputs[OLE DB Source Output].Columns[FULL_STREET_NAME]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container 2\Data Flow Task\GarbageExtractFinal.Outputs[OLE DB Source Output].ExternalColumns[FULL_STREET_NAME]"
+                          length="40"
+                          lineageId="Package\Sequence Container 2\Data Flow Task\GarbageExtractFinal.Outputs[OLE DB Source Output].Columns[FULL_STREET_NAME]"
+                          name="FULL_STREET_NAME"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container 2\Data Flow Task\GarbageExtractFinal.Outputs[OLE DB Source Output].Columns[CITY]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container 2\Data Flow Task\GarbageExtractFinal.Outputs[OLE DB Source Output].ExternalColumns[CITY]"
+                          length="10"
+                          lineageId="Package\Sequence Container 2\Data Flow Task\GarbageExtractFinal.Outputs[OLE DB Source Output].Columns[CITY]"
+                          name="CITY"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container 2\Data Flow Task\GarbageExtractFinal.Outputs[OLE DB Source Output].Columns[ZONE]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container 2\Data Flow Task\GarbageExtractFinal.Outputs[OLE DB Source Output].ExternalColumns[ZONE]"
+                          length="100"
+                          lineageId="Package\Sequence Container 2\Data Flow Task\GarbageExtractFinal.Outputs[OLE DB Source Output].Columns[ZONE]"
+                          name="ZONE"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container 2\Data Flow Task\GarbageExtractFinal.Outputs[OLE DB Source Output].ExternalColumns[HOUSE]"
+                          codePage="1252"
+                          dataType="str"
+                          length="20"
+                          name="HOUSE" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container 2\Data Flow Task\GarbageExtractFinal.Outputs[OLE DB Source Output].ExternalColumns[FULL_STREET_NAME]"
+                          codePage="1252"
+                          dataType="str"
+                          length="40"
+                          name="FULL_STREET_NAME" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container 2\Data Flow Task\GarbageExtractFinal.Outputs[OLE DB Source Output].ExternalColumns[CITY]"
+                          codePage="1252"
+                          dataType="str"
+                          length="10"
+                          name="CITY" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container 2\Data Flow Task\GarbageExtractFinal.Outputs[OLE DB Source Output].ExternalColumns[ZONE]"
+                          codePage="1252"
+                          dataType="str"
+                          length="100"
+                          name="ZONE" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Sequence Container 2\Data Flow Task\GarbageExtractFinal.Outputs[OLE DB Source Error Output]"
+                      isErrorOut="true"
+                      name="OLE DB Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Sequence Container 2\Data Flow Task\GarbageExtractFinal.Outputs[OLE DB Source Error Output].Columns[HOUSE]"
+                          codePage="1252"
+                          dataType="str"
+                          length="20"
+                          lineageId="Package\Sequence Container 2\Data Flow Task\GarbageExtractFinal.Outputs[OLE DB Source Error Output].Columns[HOUSE]"
+                          name="HOUSE" />
+                        <outputColumn
+                          refId="Package\Sequence Container 2\Data Flow Task\GarbageExtractFinal.Outputs[OLE DB Source Error Output].Columns[FULL_STREET_NAME]"
+                          codePage="1252"
+                          dataType="str"
+                          length="40"
+                          lineageId="Package\Sequence Container 2\Data Flow Task\GarbageExtractFinal.Outputs[OLE DB Source Error Output].Columns[FULL_STREET_NAME]"
+                          name="FULL_STREET_NAME" />
+                        <outputColumn
+                          refId="Package\Sequence Container 2\Data Flow Task\GarbageExtractFinal.Outputs[OLE DB Source Error Output].Columns[CITY]"
+                          codePage="1252"
+                          dataType="str"
+                          length="10"
+                          lineageId="Package\Sequence Container 2\Data Flow Task\GarbageExtractFinal.Outputs[OLE DB Source Error Output].Columns[CITY]"
+                          name="CITY" />
+                        <outputColumn
+                          refId="Package\Sequence Container 2\Data Flow Task\GarbageExtractFinal.Outputs[OLE DB Source Error Output].Columns[ZONE]"
+                          codePage="1252"
+                          dataType="str"
+                          length="100"
+                          lineageId="Package\Sequence Container 2\Data Flow Task\GarbageExtractFinal.Outputs[OLE DB Source Error Output].Columns[ZONE]"
+                          name="ZONE" />
+                        <outputColumn
+                          refId="Package\Sequence Container 2\Data Flow Task\GarbageExtractFinal.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container 2\Data Flow Task\GarbageExtractFinal.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Sequence Container 2\Data Flow Task\GarbageExtractFinal.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container 2\Data Flow Task\GarbageExtractFinal.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Sequence Container 2\Data Flow Task.Paths[OLE DB Source Output]"
+                  endId="Package\Sequence Container 2\Data Flow Task\Flat File Destination - ReCollect.Inputs[Flat File Destination Input]"
+                  name="OLE DB Source Output"
+                  startId="Package\Sequence Container 2\Data Flow Task\GarbageExtractFinal.Outputs[OLE DB Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{A6F72101-977B-4560-8CD4-27D176943AAD}"
+      DTS:From="Package\Foreach Loop - Truncate or create target tables"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Drop Indexes" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{2C08E822-F4CC-47FE-888D-4B05FB3D44D5}"
+      DTS:From="Package\Drop Indexes"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Sequence Container" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{7128FE17-D80A-4BD4-BC2C-D31BA4694CAC}"
+      DTS:From="Package\Sequence Container"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Sequence Container 1" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{1787D25C-EF17-44BA-A46F-5749CEA7E0C6}"
+      DTS:From="Package\Recreate Indexes"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 3"
+      DTS:To="Package\Grant Permissions" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 4]"
+      DTS:CreationName=""
+      DTS:DTSID="{21A486B2-AB3D-4C22-A54A-8305BD423149}"
+      DTS:From="Package\Sequence Container 1"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 4"
+      DTS:To="Package\Sequence Container 2" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 5]"
+      DTS:CreationName=""
+      DTS:DTSID="{527B6559-8B8D-4B87-B72B-F95C351A4946}"
+      DTS:From="Package\Sequence Container 2"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 5"
+      DTS:To="Package\Recreate Indexes" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph" xmlns:mssge="clr-namespace:Microsoft.SqlServer.Graph.Extended;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Drop Indexes"
+          TopLeft="197.047169811321,289.198113207547" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Foreach Loop - Truncate or create target tables\Create Indexes"
+          TopLeft="375.622641509434,78.7735849056604" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Foreach Loop - Truncate or create target tables\Create v_TableName"
+          TopLeft="205.88679245283,78.7735849056604" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Foreach Loop - Truncate or create target tables\Set Variable\Count if table exists"
+          TopLeft="7.54716981132076,8.47169811320755" />
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="153,67"
+          Size="153,111"
+          Id="Package\Foreach Loop - Truncate or create target tables\Set Variable"
+          TopLeft="7.50943396226415,8.96226415094339" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Foreach Loop - Truncate or create target tables\Truncate v_TableName"
+          TopLeft="205.88679245283,8.47169811320754" />
+        <EdgeLayout
+          Id="Package\Foreach Loop - Truncate or create target tables.PrecedenceConstraints[Constraint]"
+          TopLeft="160.075471698113,43.8301886792453">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="45.811320754717,-13.3962264150943"
+              Start="0,0"
+              End="38.311320754717,-13.3962264150943">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="22.9056603773585,0" />
+                  <mssgle:LineSegment
+                    End="22.9056603773585,-13.3962264150943" />
+                  <mssgle:LineSegment
+                    End="38.311320754717,-13.3962264150943" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="14.9056603773585,5,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Foreach Loop - Truncate or create target tables.PrecedenceConstraints[Constraint 1]"
+          TopLeft="160.075471698113,85.3396226415094">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="45.811320754717,15.3962264150943"
+              Start="0,0"
+              End="38.311320754717,15.3962264150943">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="22.9056603773585,0" />
+                  <mssgle:LineSegment
+                    End="22.9056603773585,15.3962264150943" />
+                  <mssgle:LineSegment
+                    End="38.311320754717,15.3962264150943" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="14.9056603773585,-26,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Foreach Loop - Truncate or create target tables.PrecedenceConstraints[Constraint 2]"
+          TopLeft="341.660377358491,100.735849056604">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="33.9622641509434,0"
+              Start="0,0"
+              End="26.4622641509434,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="26.4622641509434,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="519,137"
+          Size="519,181"
+          Id="Package\Foreach Loop - Truncate or create target tables"
+          TopLeft="5.5,63.3490566037736" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Grant Permissions"
+          TopLeft="756.254716981132,625.61320754717" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Recreate Indexes"
+          TopLeft="756.254716981132,540.669811320755" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Sequence Container\Data Flow Task - Staging"
+          TopLeft="10.7169811320755,8.47169811320754" />
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="162,63"
+          Size="162,107"
+          Id="Package\Sequence Container"
+          TopLeft="183.27358490566,384.971698113208" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Sequence Container 1\Data Flow Task - Final"
+          TopLeft="13.8490566037735,8.47169811320754" />
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="164,63"
+          Size="164,107"
+          Id="Package\Sequence Container 1"
+          TopLeft="455.839622641509,384.971698113208" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Sequence Container 2\Data Flow Task"
+          TopLeft="7.9622641509435,8.47169811320754" />
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="159,63"
+          Size="159,107"
+          Id="Package\Sequence Container 2"
+          TopLeft="745.27358490566,384.971698113208" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="264.933962264151,244.254716981132">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,44.9433962264151"
+              Start="0,0"
+              End="0,37.4433962264151">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,37.4433962264151" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="824.141509433962,584.594339622641">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,41.0188679245283"
+              Start="0,0"
+              End="0,33.5188679245283">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,33.5188679245283" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="264.933962264151,333.122641509434">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-0.867924528301899,51.8490566037736"
+              Start="0,0"
+              End="-0.867924528301899,44.3490566037736">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,25.9245283018868" />
+                  <mssgle:LineSegment
+                    End="-0.867924528301899,25.9245283018868" />
+                  <mssgle:LineSegment
+                    End="-0.867924528301899,44.3490566037736" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="344.858490566038,438.292452830189">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="110.981132075472,0"
+              Start="0,0"
+              End="103.481132075472,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="103.481132075472,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 4]"
+          TopLeft="619.575471698113,438.292452830189">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="125.698113207547,0"
+              Start="0,0"
+              End="118.198113207547,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="118.198113207547,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 5]"
+          TopLeft="824.669811320755,491.650943396226">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-0.528301886792406,49.0188679245283"
+              Start="0,0"
+              End="-0.528301886792406,41.5188679245283">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,24.4905660377358" />
+                  <mssgle:LineSegment
+                    End="-0.528301886792406,24.4905660377358" />
+                  <mssgle:LineSegment
+                    End="-0.528301886792406,41.5188679245283" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <AnnotationLayout
+          Text="These are disabled, but left as placeholders &#xD;&#xA;for possible future use."
+          ParentId="Package"
+          Size="226,65"
+          Id="b0d2ca7b-b3eb-47a7-9bf2-9b846ddb104b"
+          TopLeft="494.783018867925,555.5">
+          <AnnotationLayout.FontInfo>
+            <mssge:FontInfo
+              Family="Tahoma"
+              Size="11.25"
+              Color="#FF080000">
+              <mssge:FontInfo.TextDecorations>
+                <av:TextDecorationCollection />
+              </mssge:FontInfo.TextDecorations>
+            </mssge:FontInfo>
+          </AnnotationLayout.FontInfo>
+        </AnnotationLayout>
+        <AnnotationLayout
+          Text="When adding a new extract table, add it to the data flow, but copy the create table statement.  &#xD;&#xA;Use a tool like &quot;vi&quot; or &quot;Notepad++&quot; to strip carriage returns, then copy and paste it to the &#xD;&#xA;Foreach Loop &quot;collection&quot; parameter, along with the tablename.  This loop will then either &#xD;&#xA;truncate the table if it exists, or create the table if it does not exist.  Do the same for indexes."
+          ParentId="Package"
+          Size="469,133"
+          Id="654851f5-cdec-4d27-b34b-d0ba79e6cdba"
+          TopLeft="32.5566037735849,5.5">
+          <AnnotationLayout.FontInfo>
+            <mssge:FontInfo
+              Family="Tahoma"
+              Size="11.25"
+              Color="#FF080000">
+              <mssge:FontInfo.TextDecorations>
+                <av:TextDecorationCollection />
+              </mssge:FontInfo.TextDecorations>
+            </mssge:FontInfo>
+          </AnnotationLayout.FontInfo>
+        </AnnotationLayout>
+        <AnnotationLayout
+          Text="To strip the carriage returns using &quot;vi&quot;:&#xD;&#xA;$vi temp.txt&#xD;&#xA;&lt;press i to insert&gt;&#xD;&#xA;&lt;paste the formatted create statement&gt;&#xD;&#xA;&lt;press ESC ZZ to save and exit&gt;&#xD;&#xA;From Windows Explorer, open the text file, copy the contents and &#xD;&#xA;paste into SSIS.&#xD;&#xA;Note:  Although not confirmed, I have found references that this may &#xD;&#xA;no longer be necessary in SQL 2012 and beyond."
+          ParentId="Package"
+          Size="338,173"
+          Id="a00dc903-3ed9-4b1a-9970-55d10383e5c5"
+          TopLeft="385.971698113208,190.27358490566">
+          <AnnotationLayout.FontInfo>
+            <mssge:FontInfo
+              Family="Tahoma"
+              Size="11.25"
+              Color="#FF080000">
+              <mssge:FontInfo.TextDecorations>
+                <av:TextDecorationCollection />
+              </mssge:FontInfo.TextDecorations>
+            </mssge:FontInfo>
+          </AnnotationLayout.FontInfo>
+        </AnnotationLayout>
+        <AnnotationLayout
+          Text="October 8, 2015 - Glen Harrison&#xD;&#xA;This extracts all active properties from Tempest along with whether they have a utility service &#xD;&#xA;with the word GARBAGE in it.  This is then joined on FOLIO to active AMANDA properties &#xD;&#xA;including the garbage zone info field.  This data is then written out to a staging table, one &#xD;&#xA;propertyrsn at a time.  A subsequent selection is done against this table, to produce the final &#xD;&#xA;table.  During this process if any property at the same house/street has a garbage service, then &#xD;&#xA;that will be the data that shows up in the final table.  This was specified by Monique Lieuwen, PM &#xD;&#xA;for the ReCollect project.  The final task dumps the contents of the final table to a csv file on the &#xD;&#xA;FTP server, simpy overwritting the previous file, for ReCollect to pickup."
+          ParentId="Package"
+          Size="472,228"
+          Id="c891ee1a-c7a4-4445-afce-99134c574499"
+          TopLeft="743.650943396226,18.8018867924528">
+          <AnnotationLayout.FontInfo>
+            <mssge:FontInfo
+              Family="Tahoma"
+              Size="11.25"
+              Color="#FF080000">
+              <mssge:FontInfo.TextDecorations>
+                <av:TextDecorationCollection />
+              </mssge:FontInfo.TextDecorations>
+            </mssge:FontInfo>
+          </AnnotationLayout.FontInfo>
+        </AnnotationLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <ConnectionManager
+    design-time-name="Package.ConnectionManagers[Amanda]">
+    <DataSourceID>AMANDA</DataSourceID>
+  </ConnectionManager>
+  <ConnectionManager
+    design-time-name="Package.ConnectionManagers[BI Data Staging]">
+    <DataSourceID>BI Data Staging</DataSourceID>
+  </ConnectionManager>
+  <ConnectionManager
+    design-time-name="Package.ConnectionManagers[SSIS Config]">
+    <DataSourceID>SSIS Config</DataSourceID>
+  </ConnectionManager>
+  <ConnectionManager
+    design-time-name="Package.ConnectionManagers[SSIS Logging]">
+    <DataSourceID>SSIS Logging</DataSourceID>
+  </ConnectionManager>
+  <ConnectionManager
+    design-time-name="Package.ConnectionManagers[Tempest]">
+    <DataSourceID>Tempest</DataSourceID>
+  </ConnectionManager>
+  <TaskHost
+    design-time-name="Package\Sequence Container\Data Flow Task - Staging">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssge="clr-namespace:Microsoft.SqlServer.Graph.Extended;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Sequence Container\Data Flow Task - Staging\BI Staging - GarbageExtractStage"
+          TopLeft="148.858490566038,319.990566037736" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Sequence Container\Data Flow Task - Staging\Derived Column"
+          TopLeft="148.858490566038,211.650943396226" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Sequence Container\Data Flow Task - Staging\Merge Join"
+          TopLeft="148.858490566038,103.349056603774" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Sequence Container\Data Flow Task - Staging\AMANDA - Active Properties with Garbage Zone"
+          TopLeft="283.084905660377,5.5" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Sequence Container\Data Flow Task - Staging\Tempest - Folio and GarbageService"
+          TopLeft="5.5,5.5" />
+        <EdgeLayout
+          Id="Package\Sequence Container\Data Flow Task - Staging.Paths[OLE DB Source Output1]"
+          TopLeft="350.971698113208,49.4245283018868">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="-113.471698113208,53.9245283018868"
+              Start="0,0"
+              End="-113.471698113208,46.4245283018868">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,28.4528301886793" />
+                  <mssgle:LineSegment
+                    End="-113.471698113208,28.4528301886793" />
+                  <mssgle:LineSegment
+                    End="-113.471698113208,46.4245283018868" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Sequence Container\Data Flow Task - Staging.Paths[Derived Column Output]"
+          TopLeft="216.745283018868,255.575471698113">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,64.4150943396226"
+              Start="0,0"
+              End="0,56.9150943396226">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,56.9150943396226" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Sequence Container\Data Flow Task - Staging.Paths[OLE DB Source Output]"
+          TopLeft="73.3867924528302,49.4245283018868">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="122.603773584906,53.9245283018868"
+              Start="0,0"
+              End="122.603773584906,46.4245283018868">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,29.4339622641509" />
+                  <mssgle:LineSegment
+                    End="122.603773584906,29.4339622641509" />
+                  <mssgle:LineSegment
+                    End="122.603773584906,46.4245283018868" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Sequence Container\Data Flow Task - Staging.Paths[Merge Join Output]"
+          TopLeft="216.745283018868,147.27358490566">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,64.377358490566"
+              Start="0,0"
+              End="0,56.877358490566">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,56.877358490566" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <AnnotationLayout
+          Text="Records that do not have a garbage service charge has flagged &#xD;&#xA;as &quot;_NO SERVICE&quot;.  The &quot;_&quot; is later used in a MAX() clause to &#xD;&#xA;ensure that if any properties with the same house/street have a &#xD;&#xA;garbage charge, that is the information that will go to ReCollect.&#xD;&#xA;"
+          ParentId="Package\Sequence Container\Data Flow Task - Staging"
+          Size="315,146"
+          Id="04518be2-1b46-4d19-9542-e5a835c06cfc"
+          TopLeft="302.028301886792,206.179245283019">
+          <AnnotationLayout.FontInfo>
+            <mssge:FontInfo
+              Family="Tahoma"
+              Size="11.25"
+              Color="#FF080000">
+              <mssge:FontInfo.TextDecorations>
+                <av:TextDecorationCollection />
+              </mssge:FontInfo.TextDecorations>
+            </mssge:FontInfo>
+          </AnnotationLayout.FontInfo>
+        </AnnotationLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
